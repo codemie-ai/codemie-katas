@@ -1,0 +1,53 @@
+# CodeMie Kata Catalog Configuration
+# This file contains metadata about the entire kata catalog
+
+catalog:
+  name: "Official CodeMie Kata Collection"
+  description: "Curated collection of AI development katas for the CodeMie platform"
+  maintainer: "CodeMie Team"
+  repository: "https://github.com/codemie/codemie-katas"
+  version: "1.0.0"
+
+# Catalog-level configuration for imports
+config:
+  # Automatically publish katas when imported (default: false)
+  # If false, katas will be imported as drafts and must be manually published
+  auto_publish: true
+
+  # Default creator ID for imported katas (default: "system")
+  # This is used when no specific creator is provided during import
+  default_creator: "system"
+
+  # Allow updates to existing katas (default: true)
+  # If false, existing katas will not be updated during import
+  allow_updates: true
+
+  # Update strategy: "replace" | "merge" | "skip"
+  # - replace: Replace all fields with new data from repository
+  # - merge: Merge new data with existing (preserves user modifications)
+  # - skip: Skip updates for existing katas
+  update_strategy: "replace"
+
+# Catalog statistics (auto-generated, do not edit manually)
+stats:
+  total_katas: 1
+  last_updated: "2025-12-09T15:30:00Z"
+
+  # Breakdown by level
+  by_level:
+    beginner: 1
+    intermediate: 0
+    advanced: 0
+
+  # Breakdown by status
+  by_status:
+    draft: 0
+    published: 1
+    archived: 0
+
+# Import history (optional, for tracking)
+import_history:
+  - date: "2025-12-09T15:30:00Z"
+    imported_by: "vadym_vlasenko@epam.com123"
+    katas_imported: 1
+    notes: "Initial catalog setup with first kata"

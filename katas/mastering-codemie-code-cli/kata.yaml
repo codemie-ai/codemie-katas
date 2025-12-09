@@ -1,0 +1,103 @@
+# Kata unique identifier (required)
+# Format: kebab-case, globally unique across all repositories
+# Used for duplicate detection and updates
+id: "mastering-codemie-code-cli"
+
+# Version for tracking updates (semantic versioning)
+version: "1.0.0"
+
+# Basic information
+title: "Mastering CodeMie Code CLI: Unified Multi-Agent AI Coding Assistant"
+
+description: >
+  A comprehensive hands-on Kata for developers to master the CodeMie Code CLI—a unified
+  command-line interface that orchestrates multiple AI coding agents (Claude Code, OpenAI Codex,
+  Google Gemini, and custom agents) from a single terminal. Learn to configure multi-provider
+  setups (OpenAI, Azure, AWS Bedrock, Google, Enterprise SSO), automate code reviews and
+  refactoring, integrate with CI/CD pipelines, track usage analytics, and boost productivity
+  with advanced file operations and git integration. Perfect for developers seeking a powerful,
+  enterprise-ready alternative to GitHub Copilot or Cursor with full control over multiple AI
+  providers and agents.
+
+# Difficulty level (required)
+# Values: "beginner" | "intermediate" | "advanced"
+level: "beginner"
+
+# Duration in minutes (required, 5-240)
+duration_minutes: 15
+
+# Tags (array of tag IDs from kata-tags.yaml)
+# Maximum 10 tags
+tags:
+  - "codemie-code"
+  - "code-generation"
+  - "coding-agents"
+  - "ai-agents"
+  - "getting-started"
+  - "claude-code"
+  - "codex-code"
+  - "gemini-code"
+
+# Target roles (array of role IDs from kata-roles.yaml)
+# Maximum 10 roles
+roles:
+  - "developer"
+  - "ai-engineer"
+
+# Image URL for UI card display (optional)
+# Recommended size: 400x300px
+image_url: "https://raw.githubusercontent.com/epam-gen-ai-run/ai-run-install/refs/heads/main/docs/assets/ai/ai-run-codemie-logo-dark_bg.svg"
+
+# Links to external resources (optional)
+links:
+  - title: "CodeMie Code CLI - npm Package"
+    url: "https://www.npmjs.com/package/@codemieai/code"
+    type: "documentation"
+
+  - title: "CodeMie Code CLI - GitHub Repository"
+    url: "https://github.com/codemie-ai/codemie-code"
+    type: "documentation"
+
+  - title: "Installation Demo (GIF)"
+    url: "https://raw.githubusercontent.com/codemie-ai/codemie-code/refs/heads/main/assets/demo.gif"
+    type: "video"
+
+# References for further reading (optional)
+references:
+  - "Multi-Agent AI Development"
+  - "Enterprise SSO Authentication"
+  - "AI Usage Analytics and Cost Tracking"
+  - "CLI-Based AI Coding Assistants"
+
+# Publication status (optional, defaults to "draft")
+# Values: "draft" | "published" | "archived"
+status: "published"
+
+# Authorship and maintenance (optional but recommended)
+author:
+  name: "Vadym Vlasenko"
+  email: "vadym_vlasenko@epam.com"
+  github: "vvlasenko"
+
+# Metadata (optional)
+metadata:
+  # Original database ID (for reference)
+  original_db_id: "8fc7c42d-a988-4fe0-b999-6a7eb4bb18b0"
+
+  # Creation date
+  created_at: "2025-12-09T15:22:48Z"
+
+  # Last updated
+  updated_at: "2025-12-09T15:29:51Z"
+
+  # Keywords for search
+  keywords:
+    - "CodeMie"
+    - "CLI"
+    - "Multi-Agent"
+    - "AI Coding"
+    - "Claude Code"
+    - "OpenAI Codex"
+    - "Google Gemini"
+    - "Enterprise SSO"
+    - "Usage Analytics"
