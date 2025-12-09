@@ -209,9 +209,6 @@ sources:
 - [x] First kata created with complete metadata
 - [x] First kata includes detailed step-by-step instructions
 - [x] All files committed to Git
-- [ ] Remote repository created on GitHub
-- [ ] Code pushed to remote
-- [ ] Repository URL shared with team
 
 ## 📦 Import Expectations
 

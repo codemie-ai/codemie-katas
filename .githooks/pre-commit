@@ -1,0 +1,39 @@
+#!/usr/bin/env bash
+#
+# Git pre-commit hook to auto-update .kata-catalog.yaml
+# This hook runs before each commit to ensure catalog stats are current
+#
+
+set -e
+
+echo "🔍 Pre-commit: Checking kata catalog..."
+
+# Find repository root
+REPO_ROOT=$(git rev-parse --show-toplevel)
+
+# Check if Python is available
+if ! command -v python3 &> /dev/null; then
+    echo "⚠️  Warning: python3 not found, skipping catalog update"
+    exit 0
+fi
+
+# Check if update script exists
+UPDATE_SCRIPT="$REPO_ROOT/scripts/update_catalog.py"
+if [ ! -f "$UPDATE_SCRIPT" ]; then
+    echo "⚠️  Warning: update_catalog.py not found, skipping"
+    exit 0
+fi
+
+# Run update script
+cd "$REPO_ROOT"
+python3 "$UPDATE_SCRIPT"
+
+# Check if catalog was modified
+if git diff --quiet .kata-catalog.yaml; then
+    echo "✅ Catalog is up to date"
+else
+    echo "📝 Catalog updated, staging changes..."
+    git add .kata-catalog.yaml
+fi
+
+echo "✅ Pre-commit checks passed"
