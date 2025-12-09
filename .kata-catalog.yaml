@@ -45,9 +45,3 @@ stats:
     published: 1
     archived: 0
 
-# Import history (optional, for tracking)
-import_history:
-  - date: "2025-12-09T15:30:00Z"
-    imported_by: "vadym_vlasenko@epam.com123"
-    katas_imported: 1
-    notes: "Initial catalog setup with first kata"
