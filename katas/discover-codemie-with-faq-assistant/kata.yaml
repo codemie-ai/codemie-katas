@@ -1,0 +1,22 @@
+id: "discover-codemie-with-faq-assistant"
+version: "1.0.0"
+title: "Discover CodeMie with Your FAQ Assistant"
+description: >
+  Master the CodeMie platform by exploring its intelligent FAQ assistant. Learn how to quickly
+  find answers about platform capabilities, configure integrations, and discover ready-to-use
+  assistants from the Marketplace. Your FAQ assistant is your personal guide to unlocking
+  CodeMie's full potential.
+level: "beginner"
+duration_minutes: 20
+tags:
+  - "getting-started"
+  - "codemie"
+  - "conversational-ai"
+roles:
+  - "developer"
+  - "ai-engineer"
+  - "product-manager"
+status: "published"
+author:
+  name: "CodeMie Team"
+  email: "support@codemie.ai"
