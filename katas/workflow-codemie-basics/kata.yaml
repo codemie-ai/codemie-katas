@@ -1,0 +1,22 @@
+id: "workflows-yaml-configuration-codemie"
+version: "1.0.0"
+title: "Workflows & YAML Configuration in CodeMie"
+description: >
+  Master the art of building multi-step AI automation with CodeMie Workflows. Learn what workflows are,
+  how to connect AI assistants and tools into powerful pipelines, understand states and transitions,
+  and configure everything using YAML. By the end, you'll be able to design, configure, and deploy
+  workflows that automate complex, multi-stage business processes—from extracting requirements to
+  publishing Jira tickets.
+level: "intermediate"
+duration_minutes: 45
+tags:
+  - "codemie"
+  - "automation"
+roles:
+  - "developer"
+  - "ai-engineer"
+  - "business-analyst"
+status: "draft"
+author:
+  name: "CodeMie Team"
+  email: "support@codemie.ai"
