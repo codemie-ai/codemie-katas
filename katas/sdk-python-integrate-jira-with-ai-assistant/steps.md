@@ -1,0 +1,505 @@
+# Integrate Jira with Your AI Assistant Using Python SDK
+
+Welcome to the ultimate integration challenge! In this kata, you'll build an AI assistant that seamlessly connects to your Jira instance, allowing your AI to access, understand, and work with your Jira issues. This is a real-world use case that brings together authentication, integration management, datasource configuration, and AI assistant capabilities.
+
+By the end of this kata, you'll have a fully functional AI assistant that can query your Jira projects and provide intelligent insights about your issues and workflows.
+
+---
+
+## 🎯 Challenge 1: Set Up Your Environment and SDK Client
+
+**Goal:** Install dependencies and establish an authenticated connection to CodeMie services
+
+### Instructions
+
+Let's get your development environment ready for building Jira-integrated AI assistants.
+
+1. **Install the CodeMie Python SDK**:
+```bash
+pip install codemie-sdk-python
+```
+
+2. **Create a configuration file** called `example.properties`:
+```properties
+codemie_api_domain=https://codemie.lab.epam.com/code-assistant-api
+username=firstname_lastname@epam.com
+password=your_password
+auth_client_id=your_client_id
+auth_realm_name=codemie-prod
+auth_server_url=https://keycloak.eks-core.aws.main.edp.projects.epam.com/auth
+verify_ssl=false
+```
+
+3. **Create your main script** called `jira_assistant.py`:
+```python
+import os
+from configparser import ConfigParser
+from codemie_sdk import CodeMieClient
+
+# Load configuration
+config = ConfigParser()
+config_path = os.path.join(os.path.dirname(__file__), "example.properties")
+
+with open(config_path) as f:
+    config.read_string("[example]\n" + f.read())
+
+props = dict(config.items("example"))
+
+# Initialize the CodeMie client
+client = CodeMieClient(
+    codemie_api_domain=props["codemie_api_domain"],
+    username=props["username"],
+    password=props["password"],
+    auth_client_id=props["auth_client_id"],
+    auth_realm_name=props["auth_realm_name"],
+    auth_server_url=props["auth_server_url"],
+    verify_ssl=False,
+)
+
+print("✅ Connected to CodeMie!")
+print(f"Token obtained: {client.token[:30]}...")
+```
+
+4. **Run your script**:
+```bash
+python jira_assistant.py
+```
+
+**✅ Success Criteria:**
+- [ ] SDK installed successfully
+- [ ] Configuration file created with your credentials
+- [ ] Script runs and prints connection confirmation
+- [ ] Authentication token is displayed
+
+**💡 Tip:** Keep your credentials secure! Never commit `example.properties` to version control.
+
+---
+
+## 🎯 Challenge 2: Create a Jira Integration
+
+**Goal:** Configure and register a Jira integration with your CodeMie project
+
+### Instructions
+
+Now let's connect your Jira instance to CodeMie. You'll need your Jira credentials ready!
+
+1. **Get your Jira API credentials**:
+   - Jira instance URL (e.g., `https://your-company.atlassian.net`)
+   - Your Jira email address
+   - Generate an API token from [Atlassian API Tokens](https://id.atlassian.com/manage-profile/security/api-tokens)
+
+2. **Add integration creation code** to your script:
+```python
+import uuid
+from codemie_sdk.models.integration import (
+    Integration,
+    CredentialTypes,
+    CredentialValues,
+    IntegrationType,
+)
+
+# Define your project
+user_project = "demo"
+
+# Create Jira integration configuration
+jira_integration = Integration(
+    project_name=user_project,
+    credential_type=CredentialTypes.JIRA,
+    credential_values=[
+        CredentialValues(
+            key="url",
+            value="https://your-jira-instance.atlassian.net"
+        ),
+        CredentialValues(
+            key="username",
+            value="your-jira-email@example.com"
+        ),
+        CredentialValues(
+            key="token",
+            value="your-jira-api-token"
+        ),
+    ],
+    alias=f"Demo Jira Integration {uuid.uuid4()}",
+    setting_type=IntegrationType.USER,
+)
+
+# Create the integration
+client.integrations.create(jira_integration)
+print(f"✅ Jira integration created: {jira_integration.alias}")
+```
+
+3. **Verify the integration was created**:
+```python
+from time import sleep
+
+# Wait for integration to be processed
+sleep(5)
+
+# Retrieve the integration by alias
+integration = client.integrations.get_by_alias(
+    jira_integration.alias,
+    setting_type=jira_integration.setting_type
+)
+print(f"📋 Integration ID: {integration.id}")
+print(f"📋 Integration Details: {integration}")
+```
+
+**✅ Success Criteria:**
+- [ ] Jira integration created successfully
+- [ ] Integration has a unique alias and ID
+- [ ] Can retrieve integration by alias
+- [ ] Integration details show your Jira URL
+
+**🏆 Bonus:**
+- Explore other credential types available: `CredentialTypes.GIT`, `CredentialTypes.CONFLUENCE`, `CredentialTypes.AZURE_DEVOPS`
+- List all integrations: `client.integrations.list()`
+
+**💡 Pro Tip:** The `uuid.uuid4()` in the alias ensures uniqueness when testing multiple times!
+
+---
+
+## 🎯 Challenge 3: Create a Jira Datasource
+
+**Goal:** Configure a Jira datasource that filters issues using JQL (Jira Query Language)
+
+### Instructions
+
+Datasources define what data your AI assistant can access. Let's create one for your Jira issues!
+
+1. **Import datasource models**:
+```python
+from codemie_sdk.models.datasource import JiraDataSourceRequest, DataSourceType
+```
+
+2. **Create a Jira datasource**:
+```python
+# Define your JQL query
+# This example gets issues reported by the current user
+jql_query = "reporter = currentUser()"
+
+# Create datasource configuration
+datasource_request = JiraDataSourceRequest(
+    name="my_jira_issues",
+    project_name=user_project,
+    description="My personal Jira issues datasource",
+    setting_id=integration.id,  # Link to the integration from Challenge 2
+    jql=jql_query,
+)
+
+# Create the datasource
+client.datasources.create(datasource_request)
+print(f"✅ Datasource created: {datasource_request.name}")
+print(f"📊 JQL Query: {jql_query}")
+```
+
+3. **Verify datasource creation**:
+```python
+# List datasources for your project
+datasources = client.datasources.list(
+    datasource_types=DataSourceType.JIRA,
+    projects=user_project
+)
+
+# Find your datasource
+my_datasource = next(
+    (ds for ds in datasources if ds.name == datasource_request.name),
+    None
+)
+
+if my_datasource:
+    print(f"✅ Datasource verified: {my_datasource.id}")
+    print(f"📋 Description: {my_datasource.description}")
+```
+
+**✅ Success Criteria:**
+- [ ] Datasource created and linked to Jira integration
+- [ ] JQL query is configured
+- [ ] Can retrieve datasource from the list
+- [ ] Datasource has a valid ID
+
+**🏆 Bonus:**
+- Try different JQL queries:
+  - `"project = MYPROJECT AND status = 'In Progress'"`
+  - `"assignee = currentUser() AND status != Done"`
+  - `"created >= -7d"` (issues from last 7 days)
+- Create multiple datasources for different issue filters
+
+**💡 Pro Tip:** Test your JQL queries in Jira's search interface before using them in your datasource!
+
+---
+
+## 🎯 Challenge 4: Create an AI Assistant with Jira Context
+
+**Goal:** Build an AI assistant that has access to your Jira datasource
+
+### Instructions
+
+Now for the magic - creating an AI assistant that can understand and work with your Jira issues!
+
+1. **Import assistant models**:
+```python
+from codemie_sdk.models.assistant import (
+    AssistantCreateRequest,
+    Context,
+    ContextType,
+)
+```
+
+2. **Get a prebuilt assistant as a template**:
+```python
+# Get list of prebuilt assistants
+prebuilt_assistants = client.assistants.get_prebuilt()
+
+# Use the first prebuilt assistant as a base
+prebuilt_assistant = prebuilt_assistants[0]
+print(f"📋 Using prebuilt assistant: {prebuilt_assistant.name}")
+```
+
+3. **Create your Jira-integrated assistant**:
+```python
+# Configure assistant with Jira datasource
+assistant_name = "My Jira Assistant"
+assistant_slug = f"{assistant_name} {uuid.uuid4()}"
+
+assistant_request = AssistantCreateRequest(
+    name=assistant_name,
+    slug=assistant_slug,
+    description="An AI assistant with access to my Jira issues",
+    system_prompt="""You are a helpful Jira assistant. You have access to
+    Jira issues and can help users understand their projects, track progress,
+    and provide insights about issue status and workflows. Always provide
+    clear and actionable information.""",
+    llm_model_type="gpt-4o",
+    project=user_project,
+    toolkits=prebuilt_assistant.toolkits,
+    temperature=0.7,
+    top_p=prebuilt_assistant.top_p,
+    # Link the Jira datasource
+    context=[
+        Context(
+            name=datasource_request.name,
+            context_type=ContextType.CODE,
+        )
+    ],
+)
+
+# Create the assistant
+assistant = client.assistants.create(assistant_request)
+print(f"🎉 Assistant created!")
+print(f"  ID: {assistant.id}")
+print(f"  Name: {assistant.name}")
+print(f"  Slug: {assistant.slug}")
+```
+
+4. **Verify assistant has context**:
+```python
+# Retrieve assistant by slug
+retrieved_assistant = client.assistants.get_by_slug(assistant_slug)
+print(f"✅ Assistant verified with {len(retrieved_assistant.context)} context source(s)")
+```
+
+**✅ Success Criteria:**
+- [ ] Assistant created successfully
+- [ ] Assistant is linked to Jira datasource via context
+- [ ] Assistant has a custom system prompt
+- [ ] Can retrieve assistant by slug
+
+**🏆 Bonus:**
+- Customize the system prompt for specific use cases (sprint planning, bug triage, etc.)
+- Experiment with different temperature settings for response variability
+- Try different LLM models: `gpt-4`, `claude-3-opus`, etc.
+
+---
+
+## 🎯 Challenge 5: Test Your Jira-Integrated Assistant
+
+**Goal:** Chat with your assistant and verify it can access Jira data
+
+### Instructions
+
+Time to put your assistant to the test! Let's see if it can work with your Jira issues.
+
+1. **Add chat functionality**:
+```python
+from codemie_sdk.models.assistant import AssistantChatRequest
+
+# Prepare a chat request about Jira issues
+chat_request = AssistantChatRequest(
+    text="What Jira issues am I currently working on?",
+    stream=False,
+    propagate_headers=False
+)
+
+# Chat with your assistant
+response = client.assistants.chat(
+    assistant.id,
+    chat_request
+)
+
+print(f"\n💬 Question: {chat_request.text}")
+print(f"🤖 Assistant Response:")
+print(f"{response.generated}")
+```
+
+2. **Try multiple Jira-related questions**:
+```python
+jira_questions = [
+    "How many issues are assigned to me?",
+    "What's the status of my recent issues?",
+    "Can you summarize the high-priority issues?",
+    "Which issues are blocked or need attention?",
+]
+
+print("\n🗣️  Testing Jira Knowledge...")
+for question in jira_questions:
+    chat_request = AssistantChatRequest(
+        text=question,
+        stream=False
+    )
+    response = client.assistants.chat(assistant.id, chat_request)
+    print(f"\nQ: {question}")
+    print(f"A: {response.generated[:300]}...")  # First 300 chars
+    print("---")
+```
+
+**✅ Success Criteria:**
+- [ ] Successfully chatted with the assistant
+- [ ] Assistant references Jira issues in responses
+- [ ] Responses are relevant and accurate
+- [ ] Assistant can answer multiple Jira-related questions
+
+**🏆 Bonus:**
+- Enable streaming mode for real-time responses: `stream=True`
+- Ask complex queries like "Compare my open issues vs. closed this week"
+- Test edge cases like empty results or invalid queries
+
+---
+
+## 🎯 Challenge 6: Clean Up Resources
+
+**Goal:** Properly delete resources when done testing
+
+### Instructions
+
+Good practice: always clean up test resources to avoid clutter!
+
+1. **Delete the assistant**:
+```python
+# Delete assistant (optional - keep if you want to use it)
+client.assistants.delete(assistant.id)
+print(f"🗑️  Deleted assistant: {assistant.name}")
+```
+
+2. **Delete the datasource**:
+```python
+# Find datasource by name and delete
+datasources = client.datasources.list(
+    datasource_types=DataSourceType.JIRA,
+    projects=user_project
+)
+datasource = next(
+    (ds for ds in datasources if ds.name == datasource_request.name),
+    None
+)
+
+if datasource:
+    client.datasources.delete(datasource.id)
+    print(f"🗑️  Deleted datasource: {datasource.name}")
+```
+
+3. **Delete the integration**:
+```python
+# Delete integration
+client.integrations.delete(integration.id, integration.setting_type)
+print(f"🗑️  Deleted integration: {integration.id}")
+```
+
+**✅ Success Criteria:**
+- [ ] Assistant deleted successfully
+- [ ] Datasource deleted successfully
+- [ ] Integration deleted successfully
+- [ ] No orphaned resources remain
+
+**💡 Pro Tip:** In production, you typically keep assistants and datasources running. Only delete during testing/development!
+
+---
+
+## 🎓 Kata Complete!
+
+### What You've Accomplished
+
+Congratulations! You've mastered Jira integration with CodeMie AI assistants:
+
+✅ **Set up** CodeMie SDK with proper authentication
+✅ **Created** a Jira integration with API credentials
+✅ **Configured** a Jira datasource with custom JQL queries
+✅ **Built** an AI assistant with Jira context
+✅ **Tested** the assistant's ability to access and understand Jira data
+✅ **Cleaned up** resources following best practices
+
+You now know how to:
+- Integrate external services (Jira, Confluence, GitHub, etc.)
+- Configure datasources for AI assistants
+- Link context to enable AI access to external data
+- Build domain-specific AI assistants
+- Manage integration lifecycle
+
+### Real-World Applications
+
+This pattern enables powerful use cases:
+
+**Project Management:**
+- Sprint planning assistants that analyze velocity and capacity
+- Issue triage bots that prioritize and categorize tickets
+- Standup assistants that summarize team progress
+
+**Engineering Workflow:**
+- Code review assistants that link PRs to Jira issues
+- Bug triage bots that find similar issues and suggest fixes
+- Release assistants that track features and blockers
+
+**Business Intelligence:**
+- Analytics assistants that generate reports from Jira data
+- Forecasting bots that predict delivery timelines
+- Dashboard assistants that answer adhoc queries
+
+### Next Steps
+
+Ready for more advanced integrations? Try these:
+
+1. **Multi-Datasource Assistants**: Combine Jira, GitHub, and Confluence
+   ```python
+   context=[
+       Context(name="jira_issues", context_type=ContextType.CODE),
+       Context(name="github_prs", context_type=ContextType.CODE),
+       Context(name="confluence_docs", context_type=ContextType.CODE),
+   ]
+   ```
+
+2. **Custom JQL Workflows**: Build assistants for specific projects or teams
+   ```python
+   jql="project = MYTEAM AND sprint in openSprints()"
+   ```
+
+3. **Integration Webhooks**: React to Jira events in real-time
+   - Configure Jira webhooks to trigger assistant actions
+   - Build automated workflows based on issue state changes
+
+4. **Advanced Context Management**: Dynamic datasource switching
+   ```python
+   # Switch datasources based on user requests
+   datasources = ["current_sprint", "backlog", "blocked_issues"]
+   ```
+
+5. **Build Custom Tools**: Add Jira actions to your assistant
+   - Create issues
+   - Update status
+   - Add comments
+   - Assign users
+
+### Resources
+
+- **[CodeMie SDK](https://www.npmjs.com/package/codemie-sdk)**: Official SDK package
+- **[CodeMie Documentation](https://codemie-ai.github.io/docs/)**: Complete API reference and guides
+
+**Happy integrating!** 🚀

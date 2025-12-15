@@ -1,17 +1,17 @@
-id: "build-your-first-ai-assistant-with-python-sdk"
+id: "sdk-python-chat-with-files"
 version: "1.0.0"
-title: "Build Your First AI Assistant with Python SDK"
+title: "SDK: Chat with Files: Upload and Analyze Documents with AI"
 description: >
-  Master the CodeMie Python SDK by building a real AI assistant from scratch!
-  Learn to authenticate, create assistants, manage conversations, and integrate
-  AI capabilities into your Python applications. This hands-on challenge takes you
-  from SDK setup to a working AI assistant in under 30 minutes.
+  Learn how to enhance your AI assistant with document analysis capabilities!
+  Master file uploads using bulk_upload and pass file references to your assistant
+  for intelligent document processing. Build a document-aware AI assistant that can
+  read, analyze, and answer questions about uploaded files in under 25 minutes.
 level: "beginner"
 duration_minutes: 25
 tags:
-  - "getting-started"
   - "ai-agents"
   - "llm-integration"
+  - "code-generation"
 roles:
   - "developer"
   - "ai-engineer"
@@ -25,10 +25,10 @@ links:
     url: "https://github.com/codemie-ai/codemie-sdk-python"
     type: "documentation"
 references:
-  - "Python SDK Authentication Methods"
-  - "Assistant Creation and Management"
-  - "AI Agent Integration Patterns"
+  - "File Upload and Management"
+  - "Assistant Chat with File Context"
+  - "Document Analysis Patterns"
 author:
   name: "CodeMie Team"
-  email: "vadym_vlasenko@epam.com"
+  email: "nikita_levyankov@epam.com"
   github: "codemie-ai"

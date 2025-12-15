@@ -1,0 +1,38 @@
+id: "sdk-python-integrate-jira-with-ai-assistant"
+version: "1.0.0"
+title: "SDK: Integrate Jira with Your AI Assistant Using Python"
+description: >
+  Build a powerful AI assistant that connects to your Jira projects! Learn how to
+  create integrations, configure datasources, and enable your AI assistant to access
+  and understand Jira issues. This hands-on challenge takes you from basic SDK setup
+  to a fully functional Jira-integrated AI assistant in under 30 minutes.
+level: "beginner"
+duration_minutes: 25
+tags:
+  - "integration"
+  - "ai-agents"
+  - "llm-integration"
+roles:
+  - "developer"
+  - "ai-engineer"
+  - "devops"
+status: "published"
+image_url: "https://raw.githubusercontent.com/epam-gen-ai-run/ai-run-install/refs/heads/main/docs/assets/ai/ai-run-codemie-logo-dark_bg.svg"
+links:
+  - title: "CodeMie Python SDK - PyPI"
+    url: "https://pypi.org/project/codemie-sdk-python/"
+    type: "documentation"
+  - title: "CodeMie Python SDK - GitHub"
+    url: "https://github.com/codemie-ai/codemie-sdk-python"
+    type: "documentation"
+  - title: "Jira API Documentation"
+    url: "https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/"
+    type: "documentation"
+references:
+  - "Integration Management with CodeMie SDK"
+  - "Datasource Configuration for AI Assistants"
+  - "Jira Query Language (JQL) Basics"
+author:
+  name: "CodeMie Team"
+  email: "nikita_levyankov@epam.com"
+  github: "codemie-ai"

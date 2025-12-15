@@ -339,14 +339,7 @@ Ready to level up? Try these advanced challenges:
 
 ### Resources
 
-- **Python SDK Documentation**: Full API reference and advanced examples
-- **CodeMie Platform**: Explore more assistants and capabilities
-- **Community**: Join other developers building with CodeMie
-
-### Share Your Success
-
-Built something cool with the SDK? Share it with the CodeMie community!
-- Contact: vadym_vlasenko@epam.com
-- GitHub: Submit examples and improvements
+- **[CodeMie SDK](https://www.npmjs.com/package/codemie-sdk)**: Official SDK package
+- **[CodeMie Documentation](https://codemie-ai.github.io/docs/)**: Complete API reference and guides
 
 **Happy coding!** 🚀
