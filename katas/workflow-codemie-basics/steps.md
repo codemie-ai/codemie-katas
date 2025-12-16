@@ -15,13 +15,44 @@ A **Workflow** in CodeMie is an automated process that chains together multiple 
 
 ---
 
+## Workflow creation
+
+To get started, simply go to the **Workflows** page in CodeMie and click **Create Workflow**. Here, you’ll find options to launch the Visual Workflow Editor or to write your workflow YAML by hand.
+
+![Workflow Page](https://raw.githubusercontent.com/codemie-ai/codemie-katas/refs/heads/main/katas/workflow-codemie-basics/images/workflow_page.png)
+
+---
+
+## Visual Workflow Editor — Your New Superpower!
+
+Writing YAML by hand is powerful, but sometimes you need a faster, friendlier way to design automation. That’s where the **Visual Workflow Editor** comes in! 
+
+Use the drag-and-drop interface to instantly build and adjust complex automations—no coding required! Instead of wrestling with syntax, you can visually map out each state (assistant, tool, or decision point) and instantly see how data flows through your process.
+
+![Workflow Editor](https://raw.githubusercontent.com/codemie-ai/codemie-katas/refs/heads/main/katas/workflow-codemie-basics/images/workflow_editor.png)
+
+---
+
+### Why use the Visual Editor?
+- **See the big picture:** Instantly understand how all your workflow states connect.
+- **Edit with confidence:** Add, remove, or change nodes with simple clicks.
+- **Fewer errors:** The editor guides you, preventing common mistakes in transitions and parameters.
+- **Immediate feedback:** Preview results, spot issues, and debug more easily.
+
+Check out this short video walkthrough of the Visual Workflow Editor in CodeMie to easily get started and see all the features in action:
+[Watch Video](https://youtu.be/zacMZpM5MNU?si=dML07SgqFmL56TjQ)
+
+---
+
 ## Types of Nodes You Can Use in Workflows (and Their Key Distinctions)
 
 In CodeMie, the core elements of a workflow are called **states** (sometimes called "nodes" in the docs and YAML). Each state is a step and comes in several varieties:
 
 **Node/State Types:**
 
-![node types](https://raw.githubusercontent.com/codemie-ai/codemie-katas/refs/heads/workflow-intermediate-kata/katas/workflow-codemie-basics/images/node_types.png)
+![node types](https://raw.githubusercontent.com/codemie-ai/codemie-katas/refs/heads/main/katas/workflow-codemie-basics/images/node_types.png)
+
+---
 
 a) **Assistant-Based State**
 - Uses an AI Assistant to process or generate text, summaries, user stories, etc.
@@ -47,8 +78,7 @@ c) **Custom Node/State**
 | Tool-based         | Data transfer, API calls | Low         | High   | Post to Jira          |
 | Custom             | Special logic/scripts    | Highest     | ?      | Data transformation   |
 
-Example 1:
-*Assistant-based state for summarizing*
+Example - *Assistant-based state for summarizing*:
 ```yaml
 - id: summary
   assistant_id: ai_writer
@@ -57,18 +87,6 @@ Example 1:
     {"summary": "string"}
   next:
     state_id: end
-```
-
----
-
-Example 2:  
-*Tool-based state for reading Confluence page*
-```yaml
-- id: extract
-  tool: confluence
-  action: read_by_page_id
-  next:
-    state_id: summary
 ```
 
 ---
@@ -196,14 +214,14 @@ Below is a compact but realistic workflow that extracts, analyzes, and publishes
 
 Workflow execution logic:
 
-![Full configuration](https://raw.githubusercontent.com/codemie-ai/codemie-katas/refs/heads/workflow-intermediate-kata/katas/workflow-codemie-basics/images/flowchart_with_notes.png)
+![Full configuration](https://raw.githubusercontent.com/codemie-ai/codemie-katas/refs/heads/main/katas/workflow-codemie-basics/images/flowchart_with_notes.png)
 
 
 ### Full YAML Example
 
 Actual result on platform (scroll down to see yaml):
 
-![Full configuration](https://raw.githubusercontent.com/codemie-ai/codemie-katas/refs/heads/workflow-intermediate-kata/katas/workflow-codemie-basics/images/full_workflow_example.png)
+![Full configuration](https://raw.githubusercontent.com/codemie-ai/codemie-katas/refs/heads/main/katas/workflow-codemie-basics/images/full_workflow_example.png)
 
 ---
 
@@ -212,7 +230,7 @@ Full YAML Example:
 ```yaml
 assistants:
   - id: confluence_extractor
-    assistant_id: 928f6ee1-6e46-429a-a7f9-d3468e0cd1f9  # replace with your assistant
+    assistant_id: 928f6ee1-6e46-429a-a7f9-d3468e0cd1f9  # ID of existing Assistant
   - id: story_generator
     model: gpt-4.1
     system_prompt: |
