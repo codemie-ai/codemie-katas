@@ -1,0 +1,24 @@
+id: "assistants-marketplace-gateway-to-ai-solutions"
+version: "1.0.0"
+title: "Assistants Marketplace: Your Gateway to Ready-to-Use AI Solutions"
+description: >
+  Discover the Assistants Marketplace — a hub of community-contributed AI assistants ready for immediate use.
+  Learn to navigate the Marketplace, use filters to find the perfect assistant for your needs, preview and understand assistant capabilities, and start using or cloning assistants.
+  Plus, learn the basics of publishing your own assistants to share with the community.
+  Perfect for anyone wanting to leverage pre-built AI solutions and accelerate their productivity.
+level: "beginner"
+duration_minutes: 15
+tags:
+  - "getting-started"
+  - "ai-agents"
+  - "codemie"
+roles:
+  - "ai-engineer"
+status: "published"
+links:
+  - title: "[EPAM AI/Run] AI Assistants Marketplace feature in AI/Run CodeMie"
+    url: "https://videoportal.epam.com/video/67KLWqza"
+    type: "video"
+author:
+  name: "CodeMie Team"
+  github: "codemie-ai"
