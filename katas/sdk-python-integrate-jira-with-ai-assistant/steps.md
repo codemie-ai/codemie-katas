@@ -424,6 +424,223 @@ print(f"🗑️  Deleted integration: {integration.id}")
 
 ---
 
+## 🎯 Challenge 7: Chat with Pydantic Output Schema
+
+**Goal:** Structure assistant responses using Pydantic models for type-safe, validated outputs
+
+### Instructions
+
+Output schemas allow you to enforce structured responses from your AI assistant. Pydantic schemas provide automatic validation and type checking!
+
+1. **Import Pydantic BaseModel**:
+```python
+from pydantic import BaseModel
+```
+
+2. **Define a simple Pydantic schema for Jira issue summary**:
+```python
+# Simple schema - list of issue keys
+class IssueKeysSchema(BaseModel):
+    issue_keys: list[str]
+
+# Ask assistant to list issues in structured format
+chat_request = AssistantChatRequest(
+    text="List all Jira issue keys from my datasource",
+    stream=False,
+    output_schema=IssueKeysSchema  # Pass the Pydantic class
+)
+
+response = client.assistants.chat(assistant.id, chat_request)
+
+# Response is now structured according to schema
+print(f"📋 Issue Keys: {response.issue_keys}")
+for key in response.issue_keys:
+    print(f"  - {key}")
+```
+
+3. **Define a nested Pydantic schema for detailed issue information**:
+```python
+# Nested schema with complex structure
+class JiraUser(BaseModel):
+    name: str
+    email: str | None = None
+
+class JiraIssue(BaseModel):
+    key: str
+    summary: str
+    status: str
+    priority: str
+    assignee: JiraUser | None = None
+
+class JiraIssuesResponse(BaseModel):
+    total_count: int
+    issues: list[JiraIssue]
+
+# Ask for detailed structured information
+chat_request = AssistantChatRequest(
+    text="Provide detailed information about my Jira issues including assignee details",
+    stream=False,
+    output_schema=JiraIssuesResponse
+)
+
+response = client.assistants.chat(assistant.id, chat_request)
+
+print(f"\n📊 Total Issues: {response.total_count}")
+for issue in response.issues:
+    print(f"\n🎫 {issue.key}: {issue.summary}")
+    print(f"   Status: {issue.status}")
+    print(f"   Priority: {issue.priority}")
+    if issue.assignee:
+        print(f"   Assignee: {issue.assignee.name}")
+```
+
+**✅ Success Criteria:**
+- [ ] Simple Pydantic schema returns structured list
+- [ ] Nested Pydantic schema with complex objects works
+- [ ] Response fields are automatically validated
+- [ ] Can access response attributes directly (e.g., `response.issue_keys`)
+
+**🏆 Bonus:**
+- Add field validators using Pydantic's `@validator` decorator
+- Try optional fields with default values
+- Experiment with `Field()` for descriptions and constraints
+
+**💡 Pro Tip:** Pydantic schemas provide automatic type checking and validation - invalid responses will raise errors before you access the data!
+
+---
+
+## 🎯 Challenge 8: Chat with JSON Schema
+
+**Goal:** Use JSON Schema for flexible, dictionary-based structured outputs
+
+### Instructions
+
+JSON schemas provide a standard way to define data structures without Pydantic dependencies. Perfect for dynamic schemas!
+
+1. **Define a simple JSON schema for issue statistics**:
+```python
+# Simple JSON schema
+simple_schema = {
+    "type": "object",
+    "properties": {
+        "open_count": {
+            "type": "integer",
+            "description": "Number of open issues"
+        },
+        "in_progress_count": {
+            "type": "integer",
+            "description": "Number of in-progress issues"
+        },
+        "done_count": {
+            "type": "integer",
+            "description": "Number of completed issues"
+        }
+    },
+    "required": ["open_count", "in_progress_count", "done_count"]
+}
+
+# Use JSON schema in chat request
+chat_request = AssistantChatRequest(
+    text="Analyze my Jira issues and provide counts by status",
+    stream=False,
+    output_schema=simple_schema  # Pass the dictionary
+)
+
+response = client.assistants.chat(assistant.id, chat_request)
+
+# Response is a dictionary matching the schema
+print("\n📈 Issue Statistics:")
+print(f"  Open: {response['open_count']}")
+print(f"  In Progress: {response['in_progress_count']}")
+print(f"  Done: {response['done_count']}")
+total = response['open_count'] + response['in_progress_count'] + response['done_count']
+print(f"  Total: {total}")
+```
+
+2. **Define a nested JSON schema with complex objects**:
+```python
+# Nested JSON schema with arrays and objects
+nested_schema = {
+    "type": "object",
+    "properties": {
+        "summary": {
+            "type": "object",
+            "properties": {
+                "total_issues": {"type": "integer"},
+                "report_date": {"type": "string"},
+                "project_name": {"type": "string"}
+            },
+            "required": ["total_issues", "report_date"]
+        },
+        "issues_by_priority": {
+            "type": "array",
+            "items": {
+                "type": "object",
+                "properties": {
+                    "priority": {"type": "string"},
+                    "count": {"type": "integer"},
+                    "issues": {
+                        "type": "array",
+                        "items": {
+                            "type": "object",
+                            "properties": {
+                                "key": {"type": "string"},
+                                "title": {"type": "string"}
+                            },
+                            "required": ["key", "title"]
+                        }
+                    }
+                },
+                "required": ["priority", "count", "issues"]
+            }
+        }
+    },
+    "required": ["summary", "issues_by_priority"]
+}
+
+# Request detailed report with nested structure
+chat_request = AssistantChatRequest(
+    text="Generate a comprehensive Jira report grouped by priority with issue details",
+    stream=False,
+    output_schema=nested_schema
+)
+
+response = client.assistants.chat(assistant.id, chat_request)
+
+# Access nested dictionary structure
+print(f"\n📋 Jira Report")
+print(f"Date: {response['summary']['report_date']}")
+print(f"Total Issues: {response['summary']['total_issues']}")
+
+print("\n📊 Issues by Priority:")
+for priority_group in response['issues_by_priority']:
+    print(f"\n🔥 {priority_group['priority']}: {priority_group['count']} issues")
+    for issue in priority_group['issues']:
+        print(f"   - {issue['key']}: {issue['title']}")
+```
+
+**✅ Success Criteria:**
+- [ ] Simple JSON schema returns valid dictionary
+- [ ] Nested JSON schema with arrays and objects works
+- [ ] Response matches defined schema structure
+- [ ] Can access nested values using dictionary keys
+
+**🏆 Bonus:**
+- Add JSON schema constraints (minimum, maximum, pattern)
+- Use `additionalProperties: false` to strictly enforce schema
+- Try `enum` for fixed value lists
+- Combine multiple schemas with `$ref` or `allOf`
+
+**💡 Pro Tip:** JSON schemas are more flexible than Pydantic but require manual validation. Use them when you need dynamic schemas or interoperability with other systems!
+
+**🔍 Key Differences:**
+- **Pydantic**: Type-safe, validated objects with attribute access (`response.field`)
+- **JSON Schema**: Flexible dictionaries with key access (`response['field']`)
+- **Pydantic**: Better for Python-centric workflows
+- **JSON Schema**: Better for language-agnostic APIs
+
+---
+
 ## 🎓 Kata Complete!
 
 ### What You've Accomplished
@@ -435,6 +652,8 @@ Congratulations! You've mastered Jira integration with CodeMie AI assistants:
 ✅ **Configured** a Jira datasource with custom JQL queries
 ✅ **Built** an AI assistant with Jira context
 ✅ **Tested** the assistant's ability to access and understand Jira data
+✅ **Structured responses** with Pydantic schemas for type-safe outputs
+✅ **Implemented** JSON schemas for flexible data structures
 ✅ **Cleaned up** resources following best practices
 
 You now know how to:
@@ -442,6 +661,8 @@ You now know how to:
 - Configure datasources for AI assistants
 - Link context to enable AI access to external data
 - Build domain-specific AI assistants
+- Structure AI responses with Pydantic models and JSON schemas
+- Choose between type-safe (Pydantic) and flexible (JSON) schema approaches
 - Manage integration lifecycle
 
 ### Real-World Applications
@@ -496,6 +717,19 @@ Ready for more advanced integrations? Try these:
    - Update status
    - Add comments
    - Assign users
+
+6. **Advanced Output Schemas**: Build sophisticated data pipelines
+   ```python
+   # Combine output schemas with streaming for real-time structured data
+   chat_request = AssistantChatRequest(
+       text="Analyze sprint velocity and predict completion",
+       stream=True,
+       output_schema=SprintAnalysisSchema
+   )
+   ```
+   - Create reusable schema libraries for your organization
+   - Use schemas to validate and transform AI outputs
+   - Build data pipelines with guaranteed structure
 
 ### Resources
 
