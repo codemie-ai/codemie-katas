@@ -15,7 +15,7 @@ config:
   update_strategy: replace
 stats:
   total_katas: 5
-  last_updated: '2025-12-12T18:51:54Z'
+  last_updated: '2025-12-16T10:12:00Z'
   by_level:
     beginner: 5
     intermediate: 0

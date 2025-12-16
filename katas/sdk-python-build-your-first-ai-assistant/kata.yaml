@@ -1,13 +1,14 @@
 id: "build-your-first-ai-assistant-with-python-sdk"
-version: "1.0.0"
+version: "1.1.0"
 title: "SDK: Build Your First AI Assistant with Python"
 description: >
   Master the CodeMie Python SDK by building a real AI assistant from scratch!
-  Learn to authenticate, create assistants, manage conversations, and integrate
-  AI capabilities into your Python applications. This hands-on challenge takes you
-  from SDK setup to a working AI assistant in under 30 minutes.
+  Learn to authenticate, create assistants, manage conversations, use structured
+  outputs with Pydantic schemas, and integrate AI capabilities into your Python
+  applications. This hands-on challenge takes you from SDK setup to a working
+  AI assistant with structured responses in 30 minutes.
 level: "beginner"
-duration_minutes: 25
+duration_minutes: 35
 tags:
   - "getting-started"
   - "ai-agents"
