@@ -6,7 +6,7 @@ description: >
   create integrations, configure datasources, enable your AI assistant to access
   and understand Jira issues, and structure responses with Pydantic and JSON schemas.
   This hands-on challenge takes you from basic SDK setup to a fully functional
-  Jira-integrated AI assistant with structured outputs in under 35 minutes.
+  Jira-integrated AI assistant with structured outputs in under 25 minutes.
 level: "beginner"
 duration_minutes: 25
 tags:
