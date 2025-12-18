@@ -1,0 +1,32 @@
+id: "workflows-conditionals-codemie"
+version: "1.0.0"
+title: "Mastering Workflows Pt. 3: Conditional Logic"
+description: >
+  Master conditional branching in CodeMie Workflows with switch/case and if-else patterns.
+
+  Learn to build adaptive workflows that make decisions based on data, routing execution through
+  different paths for different scenarios. Through 2 practical challenges, you'll create intelligent
+  workflows that respond dynamically to input conditions.
+
+  Perfect for developers building smart automation with decision logic!
+level: "intermediate"
+image_url: "https://raw.githubusercontent.com/epam-gen-ai-run/ai-run-install/refs/heads/main/docs/assets/ai/ai-run-codemie-logo-dark_bg.svg"
+duration_minutes: 20
+tags:
+  - "codemie-workflows"
+  - "automation"
+  - "ai-agents"
+roles:
+  - "developer"
+  - "ai-engineer"
+status: "published"
+links:
+  - title: "EPAM AI/Run CodeMie in Action Part 2: Advanced AI for Business and Technology"
+    url: "https://epa.ms/codemie-course-advanced"
+    type: "tutorial"
+  - title: "Workflow YAML Configuration Documentation"
+    url: "https://codemie-ai.github.io/docs/user-guide/workflows/configuration/"
+    type: "documentation"
+author:
+  name: "CodeMie Team"
+  github: "codemie-ai"

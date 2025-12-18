@@ -1,0 +1,23 @@
+id: "assistant-prompt-mastery"
+version: "1.0.0"
+title: "Assistant Prompt Mastery"
+description: >
+  Transform underperforming assistants into powerful AI teammates! Learn to craft
+  and refine prompts that make your assistants work smarter, not harder. Master
+  the art of prompt engineering through hands-on practice with AI-powered refinement
+  tools and the Prompt Engineer assistant.
+level: "beginner"
+duration_minutes: 15
+tags:
+  - "prompt-engineering"
+  - "getting-started"
+  - "ai-agents"
+roles:
+  - "developer"
+  - "ai-engineer"
+  - "product-manager"
+image_url: "https://raw.githubusercontent.com/epam-gen-ai-run/ai-run-install/main/docs/assets/ai/prompt-engineer.png"
+status: "published"
+author:
+  name: "CodeMie Team"
+  email: "team@codemie.ai"

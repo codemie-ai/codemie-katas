@@ -19,6 +19,7 @@ roles:
   - "ai-engineer"
   - "business-analyst"
 status: "published"
+image_url: "https://raw.githubusercontent.com/epam-gen-ai-run/ai-run-install/refs/heads/main/docs/assets/ai/ai-run-codemie-logo-dark_bg.svg"
 links:
   - title: "EPAM AI/Run CodeMie in Action Part 2: Advanced AI for Business and Technology"
     url: "https://epa.ms/codemie-course-advanced"
