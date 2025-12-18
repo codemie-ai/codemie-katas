@@ -1,0 +1,33 @@
+id: "workflows-boss-challenge-codemie"
+version: "1.0.0"
+title: "Mastering Workflows Pt. 5: Boss Challenge"
+description: >
+  Master all workflow patterns in one comprehensive challenge!
+
+  Build an intelligent Jira ticket analysis system that combines multi-assistant orchestration,
+  tool integration, iteration, conditional branching, dynamic templating, and report generation.
+  This is the ultimate test of your workflow skills - a production-ready automation that handles
+  real-world complexity.
+
+  Perfect for developers ready to build enterprise-grade workflows!
+level: "advanced"
+duration_minutes: 40
+tags:
+  - "codemie-workflows"
+  - "automation"
+  - "ai-agents"
+roles:
+  - "developer"
+  - "ai-engineer"
+  - "architect"
+status: "published"
+links:
+  - title: "EPAM AI/Run CodeMie in Action Part 2: Advanced AI for Business and Technology"
+    url: "https://epa.ms/codemie-course-advanced"
+    type: "tutorial"
+  - title: "Workflow YAML Configuration Documentation"
+    url: "https://codemie-ai.github.io/docs/user-guide/workflows/configuration/"
+    type: "documentation"
+author:
+  name: "CodeMie Team"
+  github: "codemie-ai"
