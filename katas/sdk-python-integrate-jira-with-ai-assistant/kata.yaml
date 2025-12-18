@@ -8,7 +8,7 @@ description: >
   This hands-on challenge takes you from basic SDK setup to a fully functional
   Jira-integrated AI assistant with structured outputs in under 35 minutes.
 level: "beginner"
-duration_minutes: 35
+duration_minutes: 25
 tags:
   - "integration"
   - "ai-agents"
