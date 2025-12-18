@@ -1,0 +1,37 @@
+id: "sdk-python-cv-review-workflow"
+version: "1.0.0"
+title: "SDK: Build a CV Review Workflow with Python"
+description: >
+  Learn how to build an automated CV review workflow using the CodeMie Python SDK.
+  This hands-on kata teaches you to create multi-step workflows with sequential assistants
+  that analyze uploaded documents. Build a two-stage CV screening process where one assistant
+  performs initial validation and another provides detailed evaluation.
+level: "beginner"
+duration_minutes: 20
+tags:
+  - "ai-agents"
+  - "llm-integration"
+  - "workflow"
+roles:
+  - "developer"
+  - "ai-engineer"
+  - "product-manager"
+status: "published"
+author:
+  name: "CodeMie Team"
+  email: "support@codemie.ai"
+links:
+  - title: "CodeMie Python SDK on PyPI"
+    url: "https://pypi.org/project/codemie-sdk-python/"
+    type: "documentation"
+  - title: "Workflow YAML Configuration Documentation"
+    url: "https://codemie-ai.github.io/docs/user-guide/workflows/configuration/"
+    type: "documentation"
+  - title: "CodeMie Documentation"
+    url: "https://codemie-ai.github.io/docs/"
+    type: "documentation"
+references:
+  - "Workflow Orchestration"
+  - "Sequential Assistant Chains"
+  - "Document Processing with AI"
+  - "Multi-Stage AI Pipelines"
