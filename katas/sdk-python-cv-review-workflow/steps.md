@@ -550,13 +550,68 @@ This workflow pattern can be adapted for many use cases:
 
 ### Next Steps
 
-Want to level up your workflow skills? Try these challenges:
+Ready to build more advanced workflows? Try these powerful patterns:
 
-1. **Add Conditional Logic**: Make the evaluator stage conditional based on screening results
-2. **Parallel Processing**: Create a workflow that processes multiple CVs in parallel
-3. **Integration**: Connect your workflow to external systems (ATS, email, Slack)
-4. **Custom Scoring**: Add structured output schemas to extract numeric scores
-5. **Human-in-the-Loop**: Add approval steps between automated stages
+1. **Conditional Routing with Switch States**: Route CVs based on screening scores
+   ```python
+   {
+       "id": "screening",
+       "assistant_id": "cv_screener",
+       "task": "Review CV and provide score (1-10)",
+       "output_schema": '{"score": 0, "recommendation": "string"}',
+       "next": {
+           "switch": {
+               "cases": [
+                   {
+                       "condition": "context.screening.output.score >= 7",
+                       "state_id": "detailed_evaluation"
+                   },
+                   {
+                       "condition": "context.screening.output.score >= 4",
+                       "state_id": "basic_review"
+                   }
+               ],
+               "default": "rejection_notice"
+           }
+       }
+   }
+   ```
+
+2. **Structured Output with Pydantic Models**: Extract JSON data from workflow results
+   ```python
+   from pydantic import BaseModel
+
+   class CVEvaluation(BaseModel):
+       overall_rating: int
+       strengths: list[str]
+       concerns: list[str]
+       recommendation: str
+
+   # In your workflow state
+   state = {
+       "id": "evaluation",
+       "assistant_id": "cv_evaluator",
+       "task": "Evaluate CV and return structured data",
+       "output_schema": CVEvaluation.model_json_schema()
+   }
+   ```
+
+3. **Parallel CV Processing**: Process multiple candidates simultaneously
+   ```python
+   # Upload multiple CVs
+   cv_files = ["cv1.pdf", "cv2.pdf", "cv3.pdf"]
+   file_urls = [client.files.bulk_upload([Path(f)]).files[0].file_url
+                for f in cv_files]
+
+   # Run workflows in parallel for each CV
+   from concurrent.futures import ThreadPoolExecutor
+
+   def process_cv(file_url):
+       return client.workflows.run(workflow_id, file_name=file_url)
+
+   with ThreadPoolExecutor(max_workers=3) as executor:
+       results = list(executor.map(process_cv, file_urls))
+   ```
 
 ### Resources
 
