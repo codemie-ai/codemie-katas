@@ -7,6 +7,7 @@ description: >
   Plus, learn the basics of publishing your own assistants to share with the community.
   Perfect for anyone wanting to leverage pre-built AI solutions and accelerate their productivity.
 level: "beginner"
+image_url: "https://raw.githubusercontent.com/epam-gen-ai-run/ai-run-install/refs/heads/main/docs/assets/ai/ai-run-codemie-logo-dark_bg.svg"
 duration_minutes: 15
 tags:
   - "getting-started"
