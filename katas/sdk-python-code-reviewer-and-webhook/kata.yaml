@@ -1,0 +1,37 @@
+id: "sdk-python-code-reviewer-and-webhook"
+version: "1.0.0"
+title: "SDK: Build an AI Code Reviewer with Webhook Automation"
+description: >
+  Learn how to build an automated AI code reviewer with datasource integration using the CodeMie Python SDK.
+  This hands-on kata teaches you to create a Git integration, index your code repository as a datasource,
+  and build an intelligent assistant that understands your codebase. Master webhook automation by configuring
+  triggers that enable on-demand code reviews via API calls - perfect for CI/CD integration and automated
+  development workflows.
+level: "intermediate"
+duration_minutes: 20
+tags:
+  - "automation"
+  - "ai-agents"
+  - "integration"
+roles:
+  - "developer"
+  - "ai-engineer"
+  - "devops"
+status: "published"
+image_url: "https://raw.githubusercontent.com/epam-gen-ai-run/ai-run-install/refs/heads/main/docs/assets/ai/ai-run-codemie-logo-dark_bg.svg"
+links:
+  - title: "CodeMie Python SDK - PyPI"
+    url: "https://pypi.org/project/codemie-sdk-python/"
+    type: "documentation"
+  - title: "CodeMie Python SDK - GitHub"
+    url: "https://github.com/codemie-ai/codemie-sdk-python"
+    type: "documentation"
+references:
+  - "Integration Management with CodeMie SDK"
+  - "Code Datasource Configuration and Indexing"
+  - "Webhook Automation and Triggers"
+  - "Git Repository Integration for AI Assistants"
+author:
+  name: "CodeMie Team"
+  email: "dmytro_adamtsev@epam.com"
+  github: "codemie-ai"
