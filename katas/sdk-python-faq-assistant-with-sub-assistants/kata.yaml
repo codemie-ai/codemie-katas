@@ -1,0 +1,37 @@
+id: "sdk-python-faq-assistant-with-sub-assistants"
+version: "1.0.0"
+title: "SDK: Build an FAQ Assistant with Sub-Assistants"
+description: >
+  Learn how to create intelligent assistant hierarchies with datasource integration using the CodeMie Python SDK.
+  This hands-on kata teaches you to build a main FAQ coordinator that automatically
+  delegates questions to specialized sub-assistants, each connected to different knowledge sources.
+  Master the art of agent delegation by creating experts for Jira issues, Confluence documentation,
+  and Google Docs content.
+level: "beginner"
+duration_minutes: 25
+tags:
+  - "ai-agents"
+  - "llm-integration"
+  - "agent-delegation"
+roles:
+  - "developer"
+  - "ai-engineer"
+status: "published"
+author:
+  name: "CodeMie Team"
+  email: "support@codemie.ai"
+links:
+  - title: "CodeMie Python SDK on PyPI"
+    url: "https://pypi.org/project/codemie-sdk-python/"
+    type: "documentation"
+  - title: "Assistant Configuration Guide"
+    url: "https://codemie-ai.github.io/docs/user-guide/assistants/"
+    type: "documentation"
+  - title: "CodeMie Documentation"
+    url: "https://codemie-ai.github.io/docs/"
+    type: "documentation"
+references:
+  - "Agent Delegation"
+  - "Hierarchical Assistants"
+  - "Multi-Agent Systems"
+  - "Intelligent Routing"
