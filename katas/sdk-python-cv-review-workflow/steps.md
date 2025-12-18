@@ -84,24 +84,93 @@ python cv_review_workflow.py
 
 ---
 
-## 🎯 Challenge 2: Create Two Assistants for CV Review
+## 🎯 Challenge 2: Create CV Evaluator Assistant
 
-**Goal:** Set up two AI assistants with distinct roles in the review process
+**Goal:** Create a real assistant that will perform detailed CV evaluation
 
 ### Instructions
 
-We'll create two virtual assistants with specific responsibilities:
-1. **CV Screener:** Performs initial validation
-2. **CV Evaluator:** Conducts detailed analysis
+We'll create a **real assistant** (CV Evaluator) that persists in CodeMie, and later use a **virtual assistant** (CV Screener) defined directly in the workflow. This demonstrates both approaches!
 
+1. **Get available LLM models and define project**:
 ```python
 # Get available LLM models
 models = client.llms.list()
 default_model = models[0].base_name
 print(f"Using model: {default_model}")
 
-# Assistant 1: CV Screener
-screener_assistant = {
+# Define your project (from config)
+user_project = props.get("project", "default")
+```
+
+2. **Create the CV Evaluator assistant**:
+```python
+from codemie_sdk.models.assistant import AssistantCreateRequest
+
+# Create CV Evaluator as a real assistant
+evaluator_request = AssistantCreateRequest(
+    name="CV Evaluator - Senior HR Analyst",
+    description="Senior HR analyst specializing in comprehensive CV evaluation and hiring recommendations",
+    system_prompt="""You are a senior HR analyst specializing in CV evaluation.
+
+Your role is to provide detailed analysis of CVs that passed initial screening:
+1. Evaluate professional experience depth and relevance
+2. Assess skills and qualifications
+3. Analyze career progression and achievements
+4. Identify strengths and potential concerns
+5. Provide hiring recommendation with justification
+
+Generate a comprehensive evaluation report with:
+- Overall rating (1-10)
+- Strengths (top 3)
+- Areas of concern (if any)
+- Skills match analysis
+- Final recommendation (Strong Hire / Hire / Maybe / Pass)""",
+    toolkits=[],
+    project=user_project,
+    llm_model_type=default_model,
+    context=[],
+    conversation_starters=[],
+    mcp_servers=[],
+    assistant_ids=[]
+)
+
+# Create the assistant
+create_response = client.assistants.create(evaluator_request)
+
+# The create response returns basic info - we need to wait and fetch the full assistant
+# Wait a moment for the assistant to be fully created
+from time import sleep
+sleep(3)
+
+# Retrieve the assistant by listing (it will be the most recently created)
+assistants = client.assistants.list(
+    minimal_response=True,
+    scope="visible_to_user",
+    per_page=50
+)
+
+# Find our assistant by name
+evaluator_assistant = next(
+    (a for a in assistants if a.name == "CV Evaluator - Senior HR Analyst"),
+    None
+)
+
+if evaluator_assistant:
+    print(f"✅ Created CV Evaluator assistant!")
+    print(f"   ID: {evaluator_assistant.id}")
+    print(f"   Name: {evaluator_assistant.name}")
+
+    # Save the assistant ID for later use
+    evaluator_assistant_id = evaluator_assistant.id
+else:
+    raise Exception("Failed to create assistant")
+```
+
+3. **Define the CV Screener as a virtual assistant** (we'll use this in the workflow):
+```python
+# CV Screener will be a virtual assistant (defined in workflow YAML only)
+screener_config = {
     "id": "cv_screener",
     "model": default_model,
     "system_prompt": """You are a CV screening specialist. Your role is to perform initial validation of CVs.
@@ -119,49 +188,28 @@ Provide a brief screening report with:
 - Recommendation: PASS to detailed review or REJECT""",
 }
 
-# Assistant 2: CV Evaluator
-evaluator_assistant = {
-    "id": "cv_evaluator",
-    "model": default_model,
-    "system_prompt": """You are a senior HR analyst specializing in CV evaluation.
-
-Your role is to provide detailed analysis of CVs that passed initial screening:
-1. Evaluate professional experience depth and relevance
-2. Assess skills and qualifications
-3. Analyze career progression and achievements
-4. Identify strengths and potential concerns
-5. Provide hiring recommendation with justification
-
-Generate a comprehensive evaluation report with:
-- Overall rating (1-10)
-- Strengths (top 3)
-- Areas of concern (if any)
-- Skills match analysis
-- Final recommendation (Strong Hire / Hire / Maybe / Pass)""",
-}
-
-print("✅ Created CV Screener assistant")
-print("✅ Created CV Evaluator assistant")
+print("✅ Defined CV Screener configuration (virtual assistant)")
 ```
 
 **✅ Success Criteria:**
-- [ ] Both assistant configurations are created
-- [ ] Screener focuses on initial validation
-- [ ] Evaluator focuses on detailed analysis
-- [ ] System prompts are clear and specific
-- [ ] Success messages confirm creation
+- [ ] Real assistant (CV Evaluator) created successfully in CodeMie
+- [ ] Assistant ID is displayed and saved
+- [ ] Virtual assistant (CV Screener) configuration is defined
+- [ ] Both assistants have clear, specific system prompts
 
-**🏆 Bonus:** Customize the system prompts to match specific job requirements or company culture.
+**💡 Tip:** Real assistants persist in CodeMie and can be reused across workflows. Virtual assistants exist only within a specific workflow definition.
+
+**🏆 Bonus:** Customize the evaluator's system prompt to match specific job requirements or your company's hiring criteria.
 
 ---
 
-## 🎯 Challenge 3: Build Your First Workflow
+## 🎯 Challenge 3: Build Your Workflow with Mixed Assistants
 
-**Goal:** Assemble a two-stage workflow that chains both assistants sequentially
+**Goal:** Create a workflow that uses both virtual assistant (screener) and real assistant (evaluator)
 
 ### Instructions
 
-Now we'll create a workflow that orchestrates both assistants. The workflow uses YAML configuration to define assistants, states (stages), and the execution flow.
+Now we'll create a workflow that orchestrates both assistants. The workflow uses YAML configuration to define assistants, states (stages), and the execution flow. Notice how we mix virtual and real assistants!
 
 ```python
 import yaml
@@ -170,13 +218,18 @@ from codemie_sdk.models.workflow import WorkflowCreateRequest, WorkflowMode
 # Define workflow configuration
 workflow_yaml = {
     "assistants": [
-        screener_assistant,
-        evaluator_assistant,
+        # Virtual assistant defined inline
+        screener_config,
+        # Real assistant referenced by ID
+        {
+            "id": "cv_evaluator",
+            "assistant_id": evaluator_assistant_id,  # Reference the real assistant
+        },
     ],
     "states": [
         {
             "id": "screening",
-            "assistant_id": "cv_screener",
+            "assistant_id": "cv_screener",  # Uses virtual assistant
             "task": "Review the uploaded CV and provide initial screening assessment. Focus on document completeness and format quality.",
             "next": {
                 "state_id": "evaluation"
@@ -184,7 +237,7 @@ workflow_yaml = {
         },
         {
             "id": "evaluation",
-            "assistant_id": "cv_evaluator",
+            "assistant_id": "cv_evaluator",  # Uses real assistant
             "task": "Conduct detailed evaluation of the CV. Provide comprehensive analysis with hiring recommendation.",
             "next": {
                 "state_id": "end"
@@ -199,8 +252,8 @@ yaml_config = yaml.dump(workflow_yaml, sort_keys=False, allow_unicode=True)
 # Create workflow
 workflow_request = WorkflowCreateRequest(
     name="CV Review Pipeline",
-    description="Automated two-stage CV review process with screening and detailed evaluation",
-    project=props["project"],
+    description="Automated two-stage CV review: virtual screener + real evaluator",
+    project=user_project,
     yaml_config=yaml_config,
     mode=WorkflowMode.SEQUENTIAL,
 )
@@ -211,18 +264,20 @@ workflow_id = workflow_response["id"]
 print(f"✅ Workflow created successfully!")
 print(f"   Workflow ID: {workflow_id}")
 print(f"   Name: {workflow_response['name']}")
+print(f"   Mix: Virtual screener + Real evaluator")
 ```
 
 **✅ Success Criteria:**
-- [ ] Workflow YAML structure includes both assistants
+- [ ] Workflow YAML includes virtual assistant (inline definition)
+- [ ] Workflow YAML references real assistant by ID
 - [ ] Two states defined: screening and evaluation
 - [ ] States are properly chained (screening → evaluation → end)
 - [ ] Workflow is created successfully
 - [ ] Workflow ID is retrieved
 
-**💡 Tip:** The `next` field in each state determines the execution order. The "end" state_id terminates the workflow.
+**💡 Tip:** Virtual assistants (inline config) are great for one-off workflows. Real assistants (referenced by ID) are reusable across multiple workflows and persist in CodeMie.
 
-**🏆 Bonus:** Explore conditional routing by adding a third state that only executes if the screening score is above a threshold.
+**🏆 Bonus:** Try creating a workflow with two real assistants to see how they can be reused across different workflows!
 
 ---
 
@@ -393,12 +448,13 @@ else:
 
 ## 🎯 Challenge 6: Clean Up Resources
 
-**Goal:** Learn workflow lifecycle management by cleaning up test resources
+**Goal:** Learn resource lifecycle management by cleaning up workflow and assistant
 
 ### Instructions
 
-It's good practice to clean up test resources when you're done experimenting. Here's how to delete the workflow:
+It's good practice to clean up test resources when you're done experimenting. Let's delete both the workflow and the real assistant we created.
 
+1. **Delete the workflow**:
 ```python
 # List workflows to verify it exists
 workflows = client.workflows.list(per_page=50)
@@ -418,17 +474,43 @@ if our_workflow:
     print(f"\n✅ Workflow deleted successfully!")
 else:
     print(f"\n❌ Workflow {workflow_id} not found")
+```
 
-# Optionally, delete the uploaded file
-print(f"\n💡 Tip: Uploaded files can be managed through the CodeMie dashboard")
+2. **Delete the real assistant**:
+```python
+# Delete the CV Evaluator assistant
+print(f"\nDeleting assistant: {evaluator_assistant.name}")
+print(f"  ID: {evaluator_assistant_id}")
+
+client.assistants.delete(evaluator_assistant_id)
+print(f"✅ Assistant deleted successfully!")
+```
+
+3. **Verify cleanup**:
+```python
+# List assistants to confirm deletion
+my_assistants = client.assistants.list(
+    minimal_response=True,
+    scope="created_by_user",
+    per_page=50
+)
+
+print(f"\n📋 Remaining assistants: {len(my_assistants)}")
+for assistant in my_assistants:
+    print(f"  - {assistant.name}")
+
+print(f"\n💡 Tip: Virtual assistants (CV Screener) don't need cleanup - they only exist within the workflow definition")
 ```
 
 **✅ Success Criteria:**
-- [ ] Workflow is successfully retrieved before deletion
-- [ ] Workflow deletion completes without errors
-- [ ] Confirmation message is displayed
+- [ ] Workflow is successfully deleted
+- [ ] Real assistant is successfully deleted
+- [ ] Verification shows resources are removed
+- [ ] Confirmation messages are displayed
 
-**🏆 Bonus:** Build a script that archives workflow execution results before deletion for audit purposes.
+**💡 Tip:** Only real assistants need to be deleted. Virtual assistants defined inline in workflow YAML are automatically removed when the workflow is deleted.
+
+**🏆 Bonus:** Build a cleanup script that finds and removes all test resources created during development by filtering on name patterns.
 
 ---
 
@@ -439,11 +521,22 @@ Congratulations! You've successfully built an automated CV review workflow using
 ### What You've Accomplished
 
 ✅ Set up the CodeMie Python SDK and authenticated
-✅ Created two specialized AI assistants with distinct roles
-✅ Built a multi-stage workflow with sequential execution
+✅ Created a **real assistant** that persists in CodeMie
+✅ Defined a **virtual assistant** within workflow configuration
+✅ Built a multi-stage workflow mixing real and virtual assistants
 ✅ Uploaded and processed documents through the workflow
 ✅ Retrieved and analyzed results from multiple workflow stages
-✅ Learned workflow lifecycle management and cleanup
+✅ Learned complete resource lifecycle management (workflows + assistants)
+
+### Key Concepts Mastered
+
+🎯 **Real vs Virtual Assistants:**
+- **Real Assistants:** Created via API, persist in CodeMie, reusable across workflows
+- **Virtual Assistants:** Defined inline in workflow YAML, exist only within that workflow
+
+🎯 **When to Use Each:**
+- Use **real assistants** for shared logic, reusable components, or assistants you'll chat with directly
+- Use **virtual assistants** for workflow-specific roles, one-off tasks, or rapid prototyping
 
 ### Real-World Applications
 
