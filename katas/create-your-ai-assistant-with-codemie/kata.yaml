@@ -1,0 +1,25 @@
+id: "create-your-ai-assistant-with-codemie"
+version: "1.0.0"
+title: "Create Your AI Assistant with CodeMie"
+description: >
+  Master the CodeMie platform's Assistant creation workflow from start to finish!
+
+  Learn to build custom AI assistants using both manual creation and AI-powered generation,
+  configure behavior with system instructions, add data sources and tools, manage integrations,
+  edit existing assistants. This hands-on kata walks you through the complete lifecycle of assistant
+  management with real-world best practices.
+level: "beginner"
+duration_minutes: 25
+tags:
+  - "getting-started"
+  - "ai-agents"
+  - "codemie"
+roles:
+  - "developer"
+  - "ai-engineer"
+status: "published"
+image_url: "https://raw.githubusercontent.com/epam-gen-ai-run/ai-run-install/refs/heads/main/docs/assets/ai/ai-run-codemie-logo-dark_bg.svg"
+links: []
+author:
+  name: "CodeMie Team"
+  github: "codemie-ai"
