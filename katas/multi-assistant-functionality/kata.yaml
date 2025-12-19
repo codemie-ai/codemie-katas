@@ -1,0 +1,25 @@
+id: "multi-assistant-functionality"
+version: "1.0.0"
+title: "Master Multi-Assistant Orchestration: Build Your AI Team"
+description: >
+  Discover the power of Multi-Assistant orchestration in CodeMie!
+
+  Learn how to create an Orchestrator Assistant that coordinates multiple specialized Sub Assistants
+  to handle complex, multi-faceted requests. Experience hands-on how to create a team of AI specialists
+  applying the golden rules, write effective descriptions for smart routing and check the smooth operation
+  of AI agents together.
+level: "intermediate"
+duration_minutes: 15
+tags:
+  - "ai-agents"
+roles:
+  - "ai-engineer"
+status: "published"
+image_url: "https://raw.githubusercontent.com/epam-gen-ai-run/ai-run-install/refs/heads/main/docs/assets/ai/ai-run-codemie-logo-dark_bg.svg"
+links:
+  - title: "Sub-Assistants and Orchestration"
+    url: "https://codemie-ai.github.io/docs/user-guide/assistants/sub-assistants-multi-assistant-orchestrator/"
+    type: "documentation"
+author:
+  name: "CodeMie Team"
+  github: "codemie-ai"
