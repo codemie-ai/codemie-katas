@@ -14,13 +14,13 @@ config:
   allow_updates: true
   update_strategy: replace
 stats:
-  total_katas: 9
-  last_updated: '2025-12-18T09:27:16Z'
+  total_katas: 16
+  last_updated: "2026-01-09T15:39:01Z"
   by_level:
-    beginner: 8
-    intermediate: 1
-    advanced: 0
+    beginner: 9
+    intermediate: 5
+    advanced: 2
   by_status:
     draft: 0
-    published: 9
+    published: 16
     archived: 0
