@@ -1,0 +1,38 @@
+id: "sdk-python-ado-wiki-assistant"
+version: "1.0.0"
+title: "SDK: Build an Azure DevOps Wiki Assistant with CodeMie SDK"
+description: >
+  Learn how to create an AI assistant that manages Azure DevOps Wiki using the CodeMie Python SDK.
+  This hands-on kata walks you through setting up ADO integration, creating a wiki datasource for
+  knowledge retrieval, and building an assistant with wiki management tools. By the end, you'll have
+  a working assistant that can search wiki content, create new pages, and modify existing documentation.
+  Perfect for teams looking to automate their Azure DevOps wiki workflows with AI.
+level: "beginner"
+duration_minutes: 20
+tags:
+  - "integration"
+  - "conversational-ai"
+  - "knowledge-base"
+roles:
+  - "developer"
+  - "ai-engineer"
+  - "devops"
+image_url: "https://raw.githubusercontent.com/epam-gen-ai-run/ai-run-install/refs/heads/main/docs/assets/ai/ai-run-codemie-logo-dark_bg.svg"
+links:
+  - title: "CodeMie Python SDK Documentation"
+    url: "https://github.com/codemie-ai/codemie-sdk"
+    type: "documentation"
+  - title: "Azure DevOps Personal Access Tokens"
+    url: "https://learn.microsoft.com/en-us/azure/devops/organizations/accounts/use-personal-access-tokens-to-authenticate"
+    type: "guide"
+  - title: "Azure DevOps Wiki Documentation"
+    url: "https://learn.microsoft.com/en-us/azure/devops/project/wiki/wiki-create-repo"
+    type: "documentation"
+references:
+  - "Azure DevOps REST API"
+  - "LangChain Tools and Agents"
+  - "RAG with Knowledge Bases"
+status: "published"
+author:
+  name: "CodeMie Team"
+  github: "codemie-ai"
