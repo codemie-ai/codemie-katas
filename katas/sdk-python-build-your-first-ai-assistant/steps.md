@@ -43,7 +43,7 @@ client = CodeMieClient(
 
 # Test your connection
 print("✅ Connected to CodeMie!")
-print(f"Client initialized successfully")
+print(f"Token obtained: {client.token[:30]}...")
 ```
 
 3. **Get your credentials**: Contact the CodeMie team (vadym_vlasenko@epam.com) or use your existing credentials
@@ -56,7 +56,7 @@ python my_assistant.py
 **✅ Success Criteria:**
 - [ ] SDK installed without errors
 - [ ] Script runs and prints "Connected to CodeMie!"
-- [ ] Client initialized successfully message is displayed
+- [ ] Authentication token is displayed
 
 **💡 Tip:** If you're getting authentication errors, double-check your credentials and ensure your realm name is correct.
 
