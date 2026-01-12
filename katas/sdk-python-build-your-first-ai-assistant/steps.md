@@ -46,7 +46,7 @@ print("✅ Connected to CodeMie!")
 print(f"Token obtained: {client.token[:30]}...")
 ```
 
-3. **Get your credentials**: Contact the CodeMie team (vadym_vlasenko@epam.com) or use your existing credentials
+3. **Get your credentials**: Contact [CodeMie team](https://epa.ms/codemie-support) or use your existing credentials
 
 4. **Run your script**:
 ```bash
