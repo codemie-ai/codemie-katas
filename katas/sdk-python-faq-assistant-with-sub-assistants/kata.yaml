@@ -11,7 +11,7 @@ level: "beginner"
 duration_minutes: 25
 tags:
   - "ai-agents"
-  - "llm-integration"
+  - "codemie-sdk"
   - "agent-delegation"
 roles:
   - "developer"
