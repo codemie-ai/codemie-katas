@@ -279,7 +279,7 @@ assistant_request = AssistantCreateRequest(
     - Configuration settings
     - Potential improvements or issues
     Always reference specific parts of the files in your responses.""",
-    llm_model_type="gpt-4.1",
+    llm_model_type="gpt-5-2025-08-07",
     project=user_project,
     toolkits=[],
     temperature=0.3,  # Lower temperature for more focused analysis

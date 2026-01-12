@@ -270,7 +270,7 @@ assistant_request = AssistantCreateRequest(
     Jira issues and can help users understand their projects, track progress,
     and provide insights about issue status and workflows. Always provide
     clear and actionable information.""",
-    llm_model_type="gpt-4.1",
+    llm_model_type="gpt-5-2025-08-07",
     project=user_project,
     toolkits=prebuilt_assistant.toolkits,
     temperature=0.7,
