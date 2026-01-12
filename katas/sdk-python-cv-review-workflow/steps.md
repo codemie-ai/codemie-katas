@@ -100,7 +100,7 @@ default_model = models[0].base_name
 print(f"Using model: {default_model}")
 
 # Define your project (from config)
-user_project = props.get("project", "default")
+user_project = props.get("project", "user_email@epam.com") # personal user project
 ```
 
 2. **Create the CV Evaluator assistant**:
