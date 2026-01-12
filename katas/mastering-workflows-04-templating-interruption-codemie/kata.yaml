@@ -1,0 +1,35 @@
+id: "workflows-templating-interruption-codemie"
+version: "1.0.0"
+title: "Mastering Workflows Pt. 4: Templating & Human Approval"
+description: >
+  Master advanced Jinja templating and human-in-the-loop patterns in CodeMie Workflows.
+
+  Learn to create dynamic, template-driven content with conditional logic and implement approval
+  checkpoints for critical operations. Build a complete document generation workflow with Confluence
+  integration, flexible templates, and human review gates.
+
+  Perfect for developers building production workflows with quality gates!
+level: "advanced"
+image_url: "https://raw.githubusercontent.com/epam-gen-ai-run/ai-run-install/refs/heads/main/docs/assets/ai/ai-run-codemie-logo-dark_bg.svg"
+duration_minutes: 25
+tags:
+  - "codemie-workflows"
+  - "automation"
+  - "ai-agents"
+roles:
+  - "developer"
+  - "ai-engineer"
+status: "published"
+links:
+  - title: "EPAM AI/Run CodeMie in Action Part 2: Advanced AI for Business and Technology"
+    url: "https://epa.ms/codemie-course-advanced"
+    type: "tutorial"
+  - title: "Workflow YAML Configuration Documentation"
+    url: "https://codemie-ai.github.io/docs/user-guide/workflows/configuration/"
+    type: "documentation"
+  - title: "Jinja Templating Guide"
+    url: "https://jinja.palletsprojects.com/"
+    type: "documentation"
+author:
+  name: "CodeMie Team"
+  github: "codemie-ai"

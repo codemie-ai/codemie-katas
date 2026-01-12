@@ -1,0 +1,18 @@
+id: "getting-started-with-codemie"
+version: "1.0.0"
+title: "Getting started with CodeMie"
+description: >
+  Master CodeMie platform navigation in just 10 minutes! 
+  This hands-on walkthrough shows you exactly where to find assistants, workflows, datasources, and integrations.
+  Discover pre-built assistants in the Marketplace, and know exactly where to get help when you need it.
+  Your fastest path from newcomer to confident CodeMie user.
+level: "beginner"
+duration_minutes: 15
+tags: []
+roles: []
+image_url: "https://raw.githubusercontent.com/epam-gen-ai-run/ai-run-install/refs/heads/main/docs/assets/ai/ai-run-codemie-logo-dark_bg.svg"
+status: "published"
+links: []
+author:
+  name: "CodeMie Team"
+  github: "codemie-ai"

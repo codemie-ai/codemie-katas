@@ -12,7 +12,7 @@ duration_minutes: 25
 tags:
   - "integration"
   - "ai-agents"
-  - "llm-integration"
+  - "codemie-sdk"
 roles:
   - "developer"
   - "ai-engineer"

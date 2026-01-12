@@ -32,11 +32,6 @@ tags:
   - "codemie-code"
   - "code-generation"
   - "coding-agents"
-  - "ai-agents"
-  - "getting-started"
-  - "claude-code"
-  - "codex-code"
-  - "gemini-code"
 
 # Target roles (array of role IDs from kata-roles.yaml)
 # Maximum 10 roles
@@ -75,9 +70,8 @@ status: "published"
 
 # Authorship and maintenance (optional but recommended)
 author:
-  name: "Vadym Vlasenko"
-  email: "vadym_vlasenko@epam.com"
-  github: "vvlasenko"
+  name: "CodeMie Team"
+  email: "support@codemie.ai"
 
 # Metadata (optional)
 metadata:

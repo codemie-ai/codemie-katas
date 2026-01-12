@@ -1,0 +1,35 @@
+id: "workflows-yaml-configuration-codemie"
+version: "1.0.0"
+title: "Workflows & YAML Configuration in CodeMie"
+description: >
+  Learn to automate your everyday tasks with CodeMie Workflows!  
+  Quickly connect AI assistants and tools into multi-step processes—from grabbing info to publishing tasks in Jira.  
+  
+  No coding expertise needed—build, edit, and run powerful automations using a simple visual editor or YAML. By the end, you’ll be able to design and launch smart workflows that save you time and effort.  
+  
+  Ready to simplify your work? Let’s get started!
+level: "intermediate"
+duration_minutes: 45
+tags:
+  - "codemie"
+  - "automation"
+  - "codemie-workflows"
+roles:
+  - "developer"
+  - "ai-engineer"
+  - "business-analyst"
+status: "published"
+image_url: "https://raw.githubusercontent.com/epam-gen-ai-run/ai-run-install/refs/heads/main/docs/assets/ai/ai-run-codemie-logo-dark_bg.svg"
+links:
+  - title: "EPAM AI/Run CodeMie in Action Part 2: Advanced AI for Business and Technology"
+    url: "https://epa.ms/codemie-course-advanced"
+    type: "tutorial"
+  - title: "Workflow YAML Configuration Documentation"
+    url: "https://codemie-ai.github.io/docs/user-guide/workflows/configuration/"
+    type: "documentation"
+  - title: "AI/Run CodeMie: Visual Workflow Editor"
+    url: "https://youtu.be/zacMZpM5MNU?si=dML07SgqFmL56TjQ"
+    type: "video"
+author:
+  name: "CodeMie Team"
+  github: "codemie-ai"

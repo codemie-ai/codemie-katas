@@ -130,11 +130,6 @@ The CodeMie Marketplace is packed with pre-built assistants for every role and u
 - [ ] Understand how to access and evaluate Marketplace assistants
 - [ ] Have ideas about which assistants you want to try first
 
-**🏆 Bonus Challenge:**
-- Ask "What are the most popular assistants in the Marketplace?"
-- Find an assistant for a use case you've been thinking about
-- Ask the FAQ Assistant to compare two similar assistants
-
 ---
 
 ## 🎯 Challenge 4: Master FAQ Assistant Features

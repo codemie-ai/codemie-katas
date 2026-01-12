@@ -1,12 +1,20 @@
 # Build Your First AI Assistant with Python SDK
 
-Welcome to your journey of building AI assistants with CodeMie Python SDK! In this hands-on challenge, you'll go from zero to hero by creating, configuring, and chatting with your own AI assistant—all through Python code.
+Welcome to your journey of building AI assistants with CodeMie Python SDK! In this hands-on challenge, you'll go from zero to hero by creating, configuring, chatting with, and managing your own AI assistant—all through Python code.
 
-By the end of this kata, you'll have a working Python application that creates intelligent AI assistants and manages conversations, giving you the foundation to integrate AI capabilities into any Python project.
+Through 6 progressive challenges, you'll learn to:
+- Connect and authenticate with CodeMie services
+- Explore available AI models
+- Create assistants with custom configurations and slugs
+- Have intelligent conversations with your assistant
+- Update and retrieve assistants programmatically
+- Properly clean up resources
+
+By the end of this kata, you'll have a complete understanding of assistant lifecycle management and be ready to integrate AI capabilities into any Python project.
 
 ---
 
-## 🎯 Challenge 1: Connect to CodeMie (5 min)
+## 🎯 Challenge 1: Connect to CodeMie
 
 **Goal:** Set up your Python environment and establish your first connection to CodeMie services
 
@@ -22,6 +30,7 @@ pip install codemie-sdk-python
 2. **Create a new Python file** called `my_assistant.py`:
 ```python
 from codemie_sdk import CodeMieClient
+from time import sleep
 
 # Initialize your CodeMie client
 client = CodeMieClient(
@@ -34,7 +43,7 @@ client = CodeMieClient(
 
 # Test your connection
 print("✅ Connected to CodeMie!")
-print(f"Token obtained: {client.token[:20]}...")
+print(f"Token obtained: {client.token[:30]}...")
 ```
 
 3. **Get your credentials**: Contact the CodeMie team (vadym_vlasenko@epam.com) or use your existing credentials
@@ -47,13 +56,13 @@ python my_assistant.py
 **✅ Success Criteria:**
 - [ ] SDK installed without errors
 - [ ] Script runs and prints "Connected to CodeMie!"
-- [ ] Token is displayed (first 20 characters)
+- [ ] Authentication token is displayed
 
 **💡 Tip:** If you're getting authentication errors, double-check your credentials and ensure your realm name is correct.
 
 ---
 
-## 🎯 Challenge 2: Explore Available LLM Models (5 min)
+## 🎯 Challenge 2: Explore Available LLM Models
 
 **Goal:** Discover what AI models are available and choose one for your assistant
 
@@ -64,18 +73,18 @@ Before creating an assistant, let's see what powerful AI models you can use!
 1. **Add model listing code** to your `my_assistant.py`:
 ```python
 # List available LLM models
-llm_models = client.llm.list(token=client.token)
+llm_models = client.llms.list()
 
 print("\n🤖 Available LLM Models:")
 for model in llm_models[:5]:  # Show first 5 models
-    print(f"  - {model.get('id', 'N/A')}: {model.get('name', 'N/A')}")
+    print(f"  - {model.deployment_name}: {model.label or model.base_name}")
 
 # List embedding models
-embedding_models = client.llm.list_embeddings(token=client.token)
+embedding_models = client.llms.list_embeddings()
 
 print("\n📊 Available Embedding Models:")
 for model in embedding_models[:3]:  # Show first 3
-    print(f"  - {model.get('id', 'N/A')}")
+    print(f"  - {model.deployment_name}")
 ```
 
 2. **Run your updated script** and observe the available models
@@ -93,7 +102,7 @@ for model in embedding_models[:3]:  # Show first 3
 
 ---
 
-## 🎯 Challenge 3: Create Your First AI Assistant (7 min)
+## 🎯 Challenge 3: Create Your First AI Assistant
 
 **Goal:** Build and deploy your very own AI assistant with custom instructions
 
@@ -116,28 +125,50 @@ assistant_request = AssistantCreateRequest(
     Help users with Python code, best practices, and debugging.
     Always provide clear explanations and working code examples.""",
     toolkits=[],  # We'll add tools later
-    project="my_first_project",
-    llm_model_type="gpt-4o",  # Use model from Challenge 2
+    project="user_email@epam.com", # personal user project
+    llm_model_type="gpt-5-2025-08-07",  # Use model from Challenge 2
     context=[],
     conversation_starters=[
         "How do I read a CSV file in Python?",
         "Explain list comprehensions",
         "Help me debug my code"
     ],
+    slug="my-python-helper",  # Human-readable identifier
     mcp_servers=[],
     assistant_ids=[]
 )
 
 # Create the assistant
-new_assistant = client.assistant.create(assistant_request)
+create_response = client.assistants.create(assistant_request)
 
 print(f"\n🎉 Assistant Created!")
-print(f"  ID: {new_assistant.id}")
-print(f"  Name: {new_assistant.name}")
-print(f"  Slug: {new_assistant.slug}")
+print(f"  Response: {create_response}")
+
+# Wait for assistant to be fully created
+print("⏳ Waiting for assistant to be fully created...")
+sleep(5)
+
+# Retrieve all assistants and find ours by name
+assistants = client.assistants.list(
+    minimal_response=True,
+    scope="visible_to_user",
+    per_page=50
+)
+
+new_assistant = next((a for a in assistants if a.name == "My Python Helper"), None)
+
+if not new_assistant:
+    raise Exception("Could not find newly created assistant")
 
 # Save the assistant ID for later use
 assistant_id = new_assistant.id
+
+print(f"  Assistant ID: {assistant_id}")
+print(f"  Name: {new_assistant.name}")
+
+# Fetch the full assistant details to see the slug
+full_assistant = client.assistants.get(assistant_id)
+print(f"  Slug: {full_assistant.slug}")
 ```
 
 3. **Run your script** and watch your assistant come to life!
@@ -145,7 +176,7 @@ assistant_id = new_assistant.id
 **✅ Success Criteria:**
 - [ ] Assistant created successfully
 - [ ] Assistant ID is displayed
-- [ ] Assistant has a name and description
+- [ ] Assistant has a name, slug, and description
 - [ ] Conversation starters are configured
 
 **🏆 Bonus:**
@@ -157,7 +188,7 @@ assistant_id = new_assistant.id
 
 ---
 
-## 🎯 Challenge 4: Chat with Your Assistant (5 min)
+## 🎯 Challenge 4: Chat with Your Assistant
 
 **Goal:** Have your first conversation with the AI assistant you created
 
@@ -177,7 +208,7 @@ chat_request = AssistantChatRequest(
 )
 
 # Chat with your assistant (use the assistant_id from Challenge 3)
-response = client.assistant.chat(
+response = client.assistants.chat(
     assistant_id,  # From previous challenge
     chat_request
 )
@@ -203,7 +234,7 @@ for question in questions:
         text=question,
         stream=False
     )
-    response = client.assistant.chat(assistant_id, chat_request)
+    response = client.assistants.chat(assistant_id, chat_request)
     print(f"\nQ: {question}")
     print(f"A: {response.generated[:200]}...")  # First 200 chars
 ```
@@ -221,7 +252,7 @@ for question in questions:
 
 ---
 
-## 🎯 Challenge 5: Manage Your Assistant (3 min)
+## 🎯 Challenge 5: Manage Your Assistant
 
 **Goal:** Learn to list, update, and manage your assistants programmatically
 
@@ -232,9 +263,9 @@ Let's explore assistant management capabilities!
 1. **List all your assistants**:
 ```python
 # Get all your assistants
-my_assistants = client.assistant.list(
+my_assistants = client.assistants.list(
     minimal_response=True,
-    scope="created_by_user",
+    scope="visible_to_user",
     page=0,
     per_page=10
 )
@@ -254,19 +285,26 @@ update_request = AssistantUpdateRequest(
     description="An expert Python assistant with enhanced capabilities",
     system_prompt="""You are an expert Python programming mentor.
     Provide detailed explanations, best practices, and production-ready code.
-    Help users understand not just the 'how' but also the 'why'."""
+    Help users understand not just the 'how' but also the 'why'.""",
+    project=full_assistant.project,
+    llm_model_type=full_assistant.llm_model_type,
+    slug=full_assistant.slug  # Preserve the slug
 )
 
-updated_assistant = client.assistant.update(assistant_id, update_request)
+update_response = client.assistants.update(assistant_id, update_request)
 print(f"\n✨ Assistant Updated!")
-print(f"  New Name: {updated_assistant.name}")
+
+# Get the message from response (may be dict or model)
+message = update_response.get('message') if isinstance(update_response, dict) else update_response.message
+print(f"  Message: {message}")
 ```
 
 3. **Get assistant by slug**:
 ```python
 # Retrieve by slug (more human-readable than ID)
-assistant_by_slug = client.assistant.get_by_slug(new_assistant.slug)
+assistant_by_slug = client.assistants.get_by_slug("my-python-helper")
 print(f"\n🔍 Retrieved by slug: {assistant_by_slug.name}")
+print(f"  Description: {assistant_by_slug.description}")
 ```
 
 **✅ Success Criteria:**
@@ -276,9 +314,58 @@ print(f"\n🔍 Retrieved by slug: {assistant_by_slug.name}")
 - [ ] Confirmed changes were applied
 
 **🏆 Bonus:**
-- Explore prebuilt assistants: `client.assistant.get_prebuilt()`
-- Check available tools: `client.assistant.get_tools()`
+- Explore prebuilt assistants: `client.assistants.get_prebuilt()`
+- Check available tools: `client.assistants.get_tools()`
 - Create a second assistant with different capabilities
+
+---
+
+## 🎯 Challenge 6: Clean Up Resources
+
+**Goal:** Learn to properly delete assistants and clean up resources
+
+### Instructions
+
+It's good practice to clean up resources when you're done experimenting!
+
+1. **Delete your test assistant**:
+```python
+print("\n" + "="*60)
+print("🧹 Cleaning Up Resources")
+print("="*60)
+
+# Delete the assistant we created
+print(f"\n🗑️  Deleting assistant: {full_assistant.name}")
+client.assistants.delete(assistant_id)
+print(f"   ✅ Deleted assistant (ID: {assistant_id})")
+
+# Verify it's gone by listing assistants
+remaining_assistants = client.assistants.list(
+    minimal_response=True,
+    scope="visible_to_user",
+    per_page=50
+)
+
+deleted = not any(a.id == assistant_id for a in remaining_assistants)
+print(f"\n{'✅' if deleted else '❌'} Assistant deletion confirmed: {deleted}")
+```
+
+2. **Run the cleanup** and verify your assistant is removed
+
+**✅ Success Criteria:**
+- [ ] Assistant successfully deleted
+- [ ] Verified assistant no longer appears in list
+- [ ] Understood resource cleanup best practices
+
+**💡 Pro Tip:** In production, consider using try/except blocks to handle deletion errors gracefully:
+
+```python
+try:
+    client.assistants.delete(assistant_id)
+    print("✅ Assistant deleted")
+except Exception as e:
+    print(f"⚠️  Deletion failed: {e}")
+```
 
 ---
 
@@ -290,9 +377,10 @@ Congratulations! You've mastered the fundamentals of the CodeMie Python SDK:
 
 ✅ **Connected** to CodeMie services with proper authentication
 ✅ **Explored** available LLM models and capabilities
-✅ **Created** your first AI assistant from scratch
+✅ **Created** your first AI assistant from scratch with a custom slug
 ✅ **Chatted** with your assistant and got intelligent responses
-✅ **Managed** assistants programmatically (list, update, retrieve)
+✅ **Managed** assistants programmatically (list, update, retrieve by slug)
+✅ **Cleaned up** resources properly after use
 
 You now have the foundation to:
 - Integrate AI assistants into any Python application
