@@ -67,7 +67,7 @@ python jira_assistant.py
 
 **✅ Success Criteria:**
 - [ ] SDK installed successfully
-- [ ] Configuration file created with your credentials
+- [ ] Configuration file created with credentials
 - [ ] Script runs and prints connection confirmation
 - [ ] Authentication token is displayed
 
@@ -99,7 +99,7 @@ from codemie_sdk.models.integration import (
 )
 
 # Define your project
-user_project = "demo"
+user_project="user_email@epam.com", # personal user project
 
 # Create Jira integration configuration
 jira_integration = Integration(
@@ -238,6 +238,7 @@ Now for the magic - creating an AI assistant that can understand and work with y
 
 1. **Import assistant models**:
 ```python
+from time import sleep
 from codemie_sdk.models.assistant import (
     AssistantCreateRequest,
     Context,
@@ -269,7 +270,7 @@ assistant_request = AssistantCreateRequest(
     Jira issues and can help users understand their projects, track progress,
     and provide insights about issue status and workflows. Always provide
     clear and actionable information.""",
-    llm_model_type="gpt-4o",
+    llm_model_type="gpt-5-2025-08-07",
     project=user_project,
     toolkits=prebuilt_assistant.toolkits,
     temperature=0.7,
@@ -284,18 +285,36 @@ assistant_request = AssistantCreateRequest(
 )
 
 # Create the assistant
-assistant = client.assistants.create(assistant_request)
-print(f"🎉 Assistant created!")
-print(f"  ID: {assistant.id}")
-print(f"  Name: {assistant.name}")
-print(f"  Slug: {assistant.slug}")
-```
+create_response = client.assistants.create(assistant_request)
 
-4. **Verify assistant has context**:
-```python
-# Retrieve assistant by slug
-retrieved_assistant = client.assistants.get_by_slug(assistant_slug)
-print(f"✅ Assistant verified with {len(retrieved_assistant.context)} context source(s)")
+print(f"\n🎉 Assistant Created!")
+print(f"  Response: {create_response}")
+
+# Wait for assistant to be fully created
+print("⏳ Waiting for assistant to be fully created...")
+sleep(5)
+
+# Retrieve all assistants and find ours by name
+assistants = client.assistants.list(
+    minimal_response=True,
+    scope="visible_to_user",
+    per_page=50
+)
+
+assistant = next((a for a in assistants if a.name == assistant_name), None)
+
+if not assistant:
+    raise Exception("Could not find newly created assistant")
+
+assistant_id = assistant.id
+
+print(f"  Assistant ID: {assistant_id}")
+print(f"  Name: {assistant.name}")
+
+# Get full details
+full_assistant = client.assistants.get(assistant_id)
+print(f"  Slug: {full_assistant.slug}")
+print(f"✅ Assistant verified with {len(full_assistant.context)} context source(s)")
 ```
 
 **✅ Success Criteria:**
@@ -332,7 +351,7 @@ chat_request = AssistantChatRequest(
 
 # Chat with your assistant
 response = client.assistants.chat(
-    assistant.id,
+    assistant_id,
     chat_request
 )
 
@@ -356,7 +375,7 @@ for question in jira_questions:
         text=question,
         stream=False
     )
-    response = client.assistants.chat(assistant.id, chat_request)
+    response = client.assistants.chat(assistant_id, chat_request)
     print(f"\nQ: {question}")
     print(f"A: {response.generated[:300]}...")  # First 300 chars
     print("---")
@@ -385,9 +404,20 @@ Good practice: always clean up test resources to avoid clutter!
 
 1. **Delete the assistant**:
 ```python
-# Delete assistant (optional - keep if you want to use it)
-client.assistants.delete(assistant.id)
-print(f"🗑️  Deleted assistant: {assistant.name}")
+# Delete assistant
+print(f"\n🗑️  Deleting assistant: {assistant.name}")
+client.assistants.delete(assistant_id)
+print(f"   ✅ Deleted assistant (ID: {assistant_id})")
+
+# Verify deletion
+remaining_assistants = client.assistants.list(
+    minimal_response=True,
+    scope="visible_to_user",
+    per_page=50
+)
+
+deleted_assistant = not any(a.id == assistant_id for a in remaining_assistants)
+print(f"{'✅' if deleted_assistant else '❌'} Assistant deletion confirmed: {deleted_assistant}")
 ```
 
 2. **Delete the datasource**:
@@ -403,15 +433,17 @@ datasource = next(
 )
 
 if datasource:
+    print(f"\n🗑️  Deleting datasource: {datasource.name}")
     client.datasources.delete(datasource.id)
-    print(f"🗑️  Deleted datasource: {datasource.name}")
+    print(f"   ✅ Deleted datasource (ID: {datasource.id})")
 ```
 
 3. **Delete the integration**:
 ```python
 # Delete integration
+print(f"\n🗑️  Deleting integration: {integration.id}")
 client.integrations.delete(integration.id, integration.setting_type)
-print(f"🗑️  Deleted integration: {integration.id}")
+print(f"   ✅ Deleted integration")
 ```
 
 **✅ Success Criteria:**

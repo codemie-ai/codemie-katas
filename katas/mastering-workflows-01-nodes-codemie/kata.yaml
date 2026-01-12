@@ -1,0 +1,35 @@
+id: "workflows-nodes-codemie"
+version: "1.0.0"
+title: "Mastering Workflows Pt. 1: Nodes & Building Blocks"
+description: >
+  Master the fundamental building blocks of CodeMie Workflows: Assistants, Tool Nodes, and MCP Integration.
+
+  Learn to chain AI assistants, integrate external systems like Jira, and connect to live data sources
+  through Model Context Protocol (MCP). Through 3 progressive challenges, you'll build workflows that
+  combine AI reasoning with real-world data access.
+
+  Perfect for developers getting started with workflow automation!
+level: "intermediate"
+image_url: "https://raw.githubusercontent.com/epam-gen-ai-run/ai-run-install/refs/heads/main/docs/assets/ai/ai-run-codemie-logo-dark_bg.svg"
+duration_minutes: 20
+tags:
+  - "codemie-workflows"
+  - "automation"
+  - "ai-agents"
+roles:
+  - "developer"
+  - "ai-engineer"
+status: "published"
+links:
+  - title: "EPAM AI/Run CodeMie in Action Part 2: Advanced AI for Business and Technology"
+    url: "https://epa.ms/codemie-course-advanced"
+    type: "tutorial"
+  - title: "Workflow YAML Configuration Documentation"
+    url: "https://codemie-ai.github.io/docs/user-guide/workflows/configuration/"
+    type: "documentation"
+  - title: "Model Context Protocol (MCP) Specification"
+    url: "https://modelcontextprotocol.io/"
+    type: "documentation"
+author:
+  name: "CodeMie Team"
+  github: "codemie-ai"

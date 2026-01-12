@@ -254,6 +254,7 @@ Let's create an assistant configured to analyze documents and code.
 1. **Import assistant models**:
 ```python
 from codemie_sdk.models.assistant import AssistantCreateRequest
+from time import sleep
 ```
 
 2. **Create your assistant**:
@@ -261,7 +262,7 @@ from codemie_sdk.models.assistant import AssistantCreateRequest
 import uuid
 
 # Define project and assistant details
-user_project = "demo"
+user_project="user_email@epam.com", # personal user project
 assistant_name = "Document Analyzer"
 assistant_slug = f"{assistant_name} {uuid.uuid4()}"
 
@@ -278,19 +279,42 @@ assistant_request = AssistantCreateRequest(
     - Configuration settings
     - Potential improvements or issues
     Always reference specific parts of the files in your responses.""",
-    llm_model_type="gpt-4o",
+    llm_model_type="gpt-5-2025-08-07",
     project=user_project,
     toolkits=[],
     temperature=0.3,  # Lower temperature for more focused analysis
 )
 
 # Create the assistant
-assistant = client.assistants.create(assistant_request)
+create_response = client.assistants.create(assistant_request)
 
 print(f"\n🎉 Assistant Created!")
-print(f"  ID: {assistant.id}")
+print(f"  Response: {create_response}")
+
+# Wait for assistant to be fully created
+print("⏳ Waiting for assistant to be fully created...")
+sleep(5)
+
+# Retrieve all assistants and find ours by name
+assistants = client.assistants.list(
+    minimal_response=True,
+    scope="visible_to_user",
+    per_page=50
+)
+
+assistant = next((a for a in assistants if a.name == assistant_name), None)
+
+if not assistant:
+    raise Exception("Could not find newly created assistant")
+
+assistant_id = assistant.id
+
+print(f"  Assistant ID: {assistant_id}")
 print(f"  Name: {assistant.name}")
-print(f"  Slug: {assistant.slug}")
+
+# Get full details
+full_assistant = client.assistants.get(assistant_id)
+print(f"  Slug: {full_assistant.slug}")
 ```
 
 **✅ Success Criteria:**
@@ -332,7 +356,7 @@ print("\n💬 Sending chat request with files...")
 
 # Chat with assistant
 response = client.assistants.chat(
-    assistant_id=assistant.id,
+    assistant_id=assistant_id,
     request=chat_request
 )
 
@@ -359,7 +383,7 @@ for question in questions:
         file_names=file_urls,
         stream=False,
     )
-    response = client.assistants.chat(assistant.id, chat_request)
+    response = client.assistants.chat(assistant_id, chat_request)
     print(f"\nQ: {question}")
     print(f"A: {response.generated[:250]}...")  # First 250 chars
     print("---")
@@ -391,13 +415,13 @@ Let's explore more sophisticated patterns for working with files.
 
 1. **Conversation with history**:
 ```python
-from codemie_sdk.models.assistant import ChatMessage
+from codemie_sdk.models.assistant import ChatMessage, ChatRole
 
 # Build conversation history
 conversation_id = str(uuid.uuid4())
 history = [
-    ChatMessage(role="user", content="What files did you analyze?"),
-    ChatMessage(role="assistant", content="I analyzed three files: example_code.py, README.md, and config.json"),
+    ChatMessage(role=ChatRole.USER, message="What files did you analyze?"),
+    ChatMessage(role=ChatRole.ASSISTANT, message="I analyzed three files: example_code.py, README.md, and config.json"),
 ]
 
 # Continue conversation with context
@@ -409,7 +433,7 @@ chat_request = AssistantChatRequest(
     stream=False,
 )
 
-response = client.assistants.chat(assistant.id, chat_request)
+response = client.assistants.chat(assistant_id, chat_request)
 print(f"\n💡 Improvement Suggestions:")
 print(response.generated)
 ```
@@ -425,7 +449,7 @@ chat_request = AssistantChatRequest(
     stream=False,
 )
 
-response = client.assistants.chat(assistant.id, chat_request)
+response = client.assistants.chat(assistant_id, chat_request)
 print(f"\n🔍 Code Review:")
 print(response.generated)
 ```
@@ -455,7 +479,7 @@ chat_request = AssistantChatRequest(
     stream=False,
 )
 
-response = client.assistants.chat(assistant.id, chat_request)
+response = client.assistants.chat(assistant_id, chat_request)
 
 # Response will be structured according to schema
 analysis = response.generated
