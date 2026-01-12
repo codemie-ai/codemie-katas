@@ -99,7 +99,7 @@ from codemie_sdk.models.integration import (
 )
 
 # Define your project
-user_project = "demo"
+user_project="user_email@epam.com", # personal user project
 
 # Create Jira integration configuration
 jira_integration = Integration(
@@ -270,7 +270,7 @@ assistant_request = AssistantCreateRequest(
     Jira issues and can help users understand their projects, track progress,
     and provide insights about issue status and workflows. Always provide
     clear and actionable information.""",
-    llm_model_type="gpt-4o",
+    llm_model_type="gpt-4.1",
     project=user_project,
     toolkits=prebuilt_assistant.toolkits,
     temperature=0.7,

@@ -262,7 +262,7 @@ from time import sleep
 import uuid
 
 # Define project and assistant details
-user_project = "demo"
+user_project="user_email@epam.com", # personal user project
 assistant_name = "Document Analyzer"
 assistant_slug = f"{assistant_name} {uuid.uuid4()}"
 
@@ -279,7 +279,7 @@ assistant_request = AssistantCreateRequest(
     - Configuration settings
     - Potential improvements or issues
     Always reference specific parts of the files in your responses.""",
-    llm_model_type="gpt-4o",
+    llm_model_type="gpt-4.1",
     project=user_project,
     toolkits=[],
     temperature=0.3,  # Lower temperature for more focused analysis

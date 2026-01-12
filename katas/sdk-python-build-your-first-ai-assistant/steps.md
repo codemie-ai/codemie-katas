@@ -125,8 +125,8 @@ assistant_request = AssistantCreateRequest(
     Help users with Python code, best practices, and debugging.
     Always provide clear explanations and working code examples.""",
     toolkits=[],  # We'll add tools later
-    project="my_first_project",
-    llm_model_type="gpt-4o",  # Use model from Challenge 2
+    project="user_email@epam.com", # personal user project
+    llm_model_type="gpt-4.1",  # Use model from Challenge 2
     context=[],
     conversation_starters=[
         "How do I read a CSV file in Python?",
