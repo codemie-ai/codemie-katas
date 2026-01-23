@@ -119,11 +119,11 @@ generate-report (comprehensive summary)
 
 **Workflow Diagram**
 
-![Challenge Workflow](https://raw.githubusercontent.com/codemie-ai/codemie-katas/refs/heads/main/katas/mastering-workflows-05-boss-challenge-codemie/images/challenge-wf.png)
+![Challenge Workflow](https://raw.githubusercontent.com/codemie-ai/codemie-katas/refs/heads/main/katas/workflows-boss-challenge-codemie/images/challenge-wf.png)
 
 **Execution Example**
 
-![Challenge Execution](https://raw.githubusercontent.com/codemie-ai/codemie-katas/refs/heads/main/katas/mastering-workflows-05-boss-challenge-codemie/images/challenge-exec.png)
+![Challenge Execution](https://raw.githubusercontent.com/codemie-ai/codemie-katas/refs/heads/main/katas/workflows-boss-challenge-codemie/images/challenge-exec.png)
 
 **Success Checklist**
 

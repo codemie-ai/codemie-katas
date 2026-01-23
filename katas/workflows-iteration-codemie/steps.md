@@ -64,11 +64,11 @@ Build a workflow that demonstrates:
 
 **Workflow Diagram**
 
-![Challenge Workflow](https://raw.githubusercontent.com/codemie-ai/codemie-katas/refs/heads/main/katas/mastering-workflows-02-iteration-codemie/images/challenge-wf.png)
+![Challenge Workflow](https://raw.githubusercontent.com/codemie-ai/codemie-katas/refs/heads/main/katas/workflows-iteration-codemie/images/challenge-wf.png)
 
 **Execution Example**
 
-![Challenge Execution](https://raw.githubusercontent.com/codemie-ai/codemie-katas/refs/heads/main/katas/mastering-workflows-02-iteration-codemie/images/challenge-exec.png)
+![Challenge Execution](https://raw.githubusercontent.com/codemie-ai/codemie-katas/refs/heads/main/katas/workflows-iteration-codemie/images/challenge-exec.png)
 
 **Success Checklist**
 

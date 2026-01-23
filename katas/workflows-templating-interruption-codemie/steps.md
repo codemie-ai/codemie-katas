@@ -75,11 +75,11 @@ Build a workflow that demonstrates:
 
 **Workflow Diagram**
 
-![Challenge Workflow](https://raw.githubusercontent.com/codemie-ai/codemie-katas/refs/heads/main/katas/mastering-workflows-04-templating-interruption-codemie/images/challenge-wf.png)
+![Challenge Workflow](https://raw.githubusercontent.com/codemie-ai/codemie-katas/refs/heads/main/katas/workflows-templating-interruption-codemie/images/challenge-wf.png)
 
 **Execution Example**
 
-![Challenge Execution](https://raw.githubusercontent.com/codemie-ai/codemie-katas/refs/heads/main/katas/mastering-workflows-04-templating-interruption-codemie/images/challenge-exec.png)
+![Challenge Execution](https://raw.githubusercontent.com/codemie-ai/codemie-katas/refs/heads/main/katas/workflows-templating-interruption-codemie/images/challenge-exec.png)
 
 **Success Checklist**
 

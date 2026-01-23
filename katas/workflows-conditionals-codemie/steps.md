@@ -72,11 +72,11 @@ Build a workflow that demonstrates:
 
 **Workflow Diagram**
 
-![Challenge 1 Workflow](https://raw.githubusercontent.com/codemie-ai/codemie-katas/refs/heads/main/katas/mastering-workflows-03-conditionals-codemie/images/challenge1-wf.png)
+![Challenge 1 Workflow](https://raw.githubusercontent.com/codemie-ai/codemie-katas/refs/heads/main/katas/workflows-conditionals-codemie/images/challenge1-wf.png)
 
 **Execution Example**
 
-![Challenge 1 Execution](https://raw.githubusercontent.com/codemie-ai/codemie-katas/refs/heads/main/katas/mastering-workflows-03-conditionals-codemie/images/challenge1-exec.png)
+![Challenge 1 Execution](https://raw.githubusercontent.com/codemie-ai/codemie-katas/refs/heads/main/katas/workflows-conditionals-codemie/images/challenge1-exec.png)
 
 **Success Checklist**
 
@@ -382,11 +382,11 @@ Build a workflow that demonstrates:
 
 **Workflow Diagram**
 
-![Challenge 2 Workflow](https://raw.githubusercontent.com/codemie-ai/codemie-katas/refs/heads/main/katas/mastering-workflows-03-conditionals-codemie/images/challenge2-wf.png)
+![Challenge 2 Workflow](https://raw.githubusercontent.com/codemie-ai/codemie-katas/refs/heads/main/katas/workflows-conditionals-codemie/images/challenge2-wf.png)
 
 **Execution Example**
 
-![Challenge 2 Execution](https://raw.githubusercontent.com/codemie-ai/codemie-katas/refs/heads/main/katas/mastering-workflows-03-conditionals-codemie/images/challenge2-exec.png)
+![Challenge 2 Execution](https://raw.githubusercontent.com/codemie-ai/codemie-katas/refs/heads/main/katas/workflows-conditionals-codemie/images/challenge2-exec.png)
 
 **Success Checklist**
 
