@@ -10,7 +10,7 @@
 
 ---
 
-![CodeMie CLI Demo](https://raw.githubusercontent.com/codemie-ai/codemie-code/refs/heads/main/assets/demo.gif)
+![CodeMie CLI Demo](https://codemie-ai.github.io/codemie-katas/assets/demo.gif)
 
 ---
 

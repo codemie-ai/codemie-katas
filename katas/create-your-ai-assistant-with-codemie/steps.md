@@ -20,7 +20,7 @@ Let's start by getting familiar with where everything lives in CodeMie.
 
 3. **Choose your creation method** in the popup:
 
-![generate with AI](https://raw.githubusercontent.com/codemie-ai/codemie-katas/refs/heads/main/katas/create-your-ai-assistant-with-codemie/images/generate_with_AI.png)
+![generate with AI](https://codemie-ai.github.io/codemie-katas/katas/create-your-ai-assistant-with-codemie/images/generate_with_AI.png)
 
 **Option A: "Generate Assistant with AI"** - Describe your main idea and requirements for the assistant, then let the AI configure it for you.
    
@@ -103,7 +103,7 @@ Templates save time by providing tested configurations. Let's create an assistan
 
 1. **Go to the Templates tab** in the Assistants menu
 
-  ![templates tab](https://raw.githubusercontent.com/codemie-ai/codemie-katas/refs/heads/main/katas/create-your-ai-assistant-with-codemie/images/templates_tab.png)
+  ![templates tab](https://codemie-ai.github.io/codemie-katas/katas/create-your-ai-assistant-with-codemie/images/templates_tab.png)
   
 2. **Browse available templates** and find one that interests you:
 
@@ -178,7 +178,7 @@ Now let's explore the different methods to access the **Edit Assistant** page, w
 
 3. **Click the three dots (⋮)** on the assistant card
 
-![edit](https://raw.githubusercontent.com/codemie-ai/codemie-katas/refs/heads/main/katas/create-your-ai-assistant-with-codemie/images/edit.png)
+![edit](https://codemie-ai.github.io/codemie-katas/katas/create-your-ai-assistant-with-codemie/images/edit.png)
 
 4. **Select "Edit"** from the menu
 
@@ -191,7 +191,7 @@ Now let's explore the different methods to access the **Edit Assistant** page, w
 ➡️**Enhance System Instructions:**
 Use **Refine with AI** feature - add details, comments, or suggestions to enhance your existing system instructions.
 
-![Refine with AI](https://raw.githubusercontent.com/codemie-ai/codemie-katas/refs/heads/main/katas/create-your-ai-assistant-with-codemie/images/refine_with_AI.png)
+![Refine with AI](https://codemie-ai.github.io/codemie-katas/katas/create-your-ai-assistant-with-codemie/images/refine_with_AI.png)
 
 ➡️**Add a new Conversation Starter:**
 

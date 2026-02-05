@@ -248,10 +248,10 @@ Platform import behavior controlled by `.kata-catalog.yaml` config:
 **IMPORTANT**: All URLs and paths to images, files, and resources must follow these rules:
 
 ### For Production (GitHub Main Branch)
-Use **absolute URLs** with the GitHub raw content prefix:
-- Base URL: `https://raw.githubusercontent.com/codemie-ai/codemie-katas/refs/heads/main`
-- Example image: `https://raw.githubusercontent.com/codemie-ai/codemie-katas/refs/heads/main/katas/kata-name/images/diagram.png`
-- Example file: `https://raw.githubusercontent.com/codemie-ai/codemie-katas/refs/heads/main/katas/kata-name/resources/config.yaml`
+Use **absolute URLs** with the GitHub static content prefix:
+- Base URL: `https://codemie-ai.github.io/codemie-katas`
+- Example image: `https://codemie-ai.github.io/codemie-katas/katas/kata-name/images/diagram.png`
+- Example file: `https://codemie-ai.github.io/codemie-katas/katas/kata-name/resources/config.yaml`
 
 ### For Local Development and Testing
 Use **relative paths** from the kata directory:
@@ -269,18 +269,18 @@ When creating or updating katas:
 
 **kata.yaml (production)**:
 ```yaml
-image_url: "https://raw.githubusercontent.com/codemie-ai/codemie-katas/refs/heads/main/katas/kata-name/cover.png"
+image_url: "https://codemie-ai.github.io/codemie-katas/katas/kata-name/cover.png"
 links:
   - title: "Starter Template"
-    url: "https://raw.githubusercontent.com/codemie-ai/codemie-katas/refs/heads/main/katas/kata-name/templates/starter.py"
+    url: "https://codemie-ai.github.io/codemie-katas/katas/kata-name/templates/starter.py"
     type: "tutorial"
 ```
 
 **steps.md (production)**:
 ```markdown
-![Architecture Diagram](https://raw.githubusercontent.com/codemie-ai/codemie-katas/refs/heads/main/katas/kata-name/images/architecture.png)
+![Architecture Diagram](https://codemie-ai.github.io/codemie-katas/katas/kata-name/images/architecture.png)
 
-Download the [configuration file](https://raw.githubusercontent.com/codemie-ai/codemie-katas/refs/heads/main/katas/kata-name/resources/config.yaml).
+Download the [configuration file](https://codemie-ai.github.io/codemie-katas/katas/kata-name/resources/config.yaml).
 ```
 
 ## Version Control Guidelines

@@ -212,11 +212,11 @@ Now let's create the "manager" that will coordinate your AI team!
    ```
 4. From the drop-down list **in the "Sub Assistant" field** select all recently prepared assistants.
 
-![Sub Assistants selection](https://raw.githubusercontent.com/codemie-ai/codemie-katas/refs/heads/main/katas/multi-assistant-functionality/images/sub-assistant-selection.png)
+![Sub Assistants selection](https://codemie-ai.github.io/codemie-katas/katas/multi-assistant-functionality/images/sub-assistant-selection.png)
 
 **💡 Tip:** Once Orchestrator setup is done and saved, information about whether the Sub Assistant has been published to the Marketplace will be displayed on the Orchestrator Assistant details page.
 
-![Sub Assistants view](https://raw.githubusercontent.com/codemie-ai/codemie-katas/refs/heads/main/katas/multi-assistant-functionality/images/sub-assistants-view.png)
+![Sub Assistants view](https://codemie-ai.github.io/codemie-katas/katas/multi-assistant-functionality/images/sub-assistants-view.png)
 
 **✅ Success Criteria:**
 - [ ] Orchestrator created with clear delegation instructions

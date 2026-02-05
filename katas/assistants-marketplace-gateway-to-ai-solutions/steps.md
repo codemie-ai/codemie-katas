@@ -13,7 +13,7 @@ Let's dive in! 🚀
 
 **Goal:** Access the Marketplace, understand its layout, and use search and filters to find relevant assistants
 
-![Marketplace layout](https://raw.githubusercontent.com/codemie-ai/codemie-katas/refs/heads/main/katas/assistants-marketplace-gateway-to-ai-solutions/images/kata_marketplace.png)
+![Marketplace layout](https://codemie-ai.github.io/codemie-katas/katas/assistants-marketplace-gateway-to-ai-solutions/images/kata_marketplace.png)
 
 ### Instructions
 
@@ -78,7 +78,7 @@ Let's start by exploring the Marketplace, understanding its organization and lea
 
 **Goal:** Learn to evaluate pre-built assistants before using them
 
-![Marketplace assistant details](https://raw.githubusercontent.com/codemie-ai/codemie-katas/refs/heads/main/katas/assistants-marketplace-gateway-to-ai-solutions/images/kata_marketplace_assist_details.png)
+![Marketplace assistant details](https://codemie-ai.github.io/codemie-katas/katas/assistants-marketplace-gateway-to-ai-solutions/images/kata_marketplace_assist_details.png)
 
 ### Instructions
 
@@ -177,7 +177,7 @@ If you want to significantly change the assistant's settings or behavior, or if 
 
 **Goal:** Understand how to share your own assistants with the Marketplace community
 
-![Publish to marketplace](https://raw.githubusercontent.com/codemie-ai/codemie-katas/refs/heads/main/katas/assistants-marketplace-gateway-to-ai-solutions/images/kata_publish_marketplace.png)
+![Publish to marketplace](https://codemie-ai.github.io/codemie-katas/katas/assistants-marketplace-gateway-to-ai-solutions/images/kata_publish_marketplace.png)
 
 ### Instructions
 

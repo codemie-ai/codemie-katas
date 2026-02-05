@@ -54,7 +54,7 @@ links:
     type: "documentation"
 
   - title: "Installation Demo (GIF)"
-    url: "https://raw.githubusercontent.com/codemie-ai/codemie-code/refs/heads/main/assets/demo.gif"
+    url: "https://codemie-ai.github.io/codemie-katas/assets/demo.gif"
     type: "video"
 
 # References for further reading (optional)

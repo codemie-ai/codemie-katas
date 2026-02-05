@@ -19,7 +19,7 @@ A **Workflow** in CodeMie is an automated process that chains together multiple 
 
 To get started, simply go to the **Workflows** page in CodeMie and click **Create Workflow**. Here, you’ll find options to launch the Visual Workflow Editor or to write your workflow YAML by hand.
 
-![Workflow Page](https://raw.githubusercontent.com/codemie-ai/codemie-katas/refs/heads/main/katas/workflows-yaml-configuration-codemie/images/workflow_page.png)
+![Workflow Page](https://codemie-ai.github.io/codemie-katas/katas/workflows-yaml-configuration-codemie/images/workflow_page.png)
 
 ---
 
@@ -29,7 +29,7 @@ Writing YAML by hand is powerful, but sometimes you need a faster, friendlier wa
 
 Use the drag-and-drop interface to instantly build and adjust complex automations—no coding required! Instead of wrestling with syntax, you can visually map out each state (assistant, tool, or decision point) and instantly see how data flows through your process.
 
-![Workflow Editor](https://raw.githubusercontent.com/codemie-ai/codemie-katas/refs/heads/main/katas/workflows-yaml-configuration-codemie/images/workflow_editor.png)
+![Workflow Editor](https://codemie-ai.github.io/codemie-katas/katas/workflows-yaml-configuration-codemie/images/workflow_editor.png)
 
 ---
 
@@ -50,7 +50,7 @@ In CodeMie, the core elements of a workflow are called **states** (sometimes cal
 
 **Node/State Types:**
 
-![node types](https://raw.githubusercontent.com/codemie-ai/codemie-katas/refs/heads/main/katas/workflows-yaml-configuration-codemie/images/node_types.png)
+![node types](https://codemie-ai.github.io/codemie-katas/katas/workflows-yaml-configuration-codemie/images/node_types.png)
 
 ---
 
@@ -214,14 +214,14 @@ Below is a compact but realistic workflow that extracts, analyzes, and publishes
 
 Workflow execution logic:
 
-![Full configuration](https://raw.githubusercontent.com/codemie-ai/codemie-katas/refs/heads/main/katas/workflows-yaml-configuration-codemie/images/flowchart_with_notes.png)
+![Full configuration](https://codemie-ai.github.io/codemie-katas/katas/workflows-yaml-configuration-codemie/images/flowchart_with_notes.png)
 
 
 ### Full YAML Example
 
 Actual result on platform (scroll down to see yaml):
 
-![Full configuration](https://raw.githubusercontent.com/codemie-ai/codemie-katas/refs/heads/main/katas/workflows-yaml-configuration-codemie/images/full_workflow_example.png)
+![Full configuration](https://codemie-ai.github.io/codemie-katas/katas/workflows-yaml-configuration-codemie/images/full_workflow_example.png)
 
 ---
 

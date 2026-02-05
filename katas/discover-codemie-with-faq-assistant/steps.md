@@ -19,7 +19,7 @@ Think of the FAQ Assistant as your personal CodeMie expert - it knows everything
 
 **Note:** Moreover, you can find FAQ assistant in "Help" menu in Sidebar or directly in Marketplace.
 
-![FAQ Assistant Location](https://raw.githubusercontent.com/codemie-ai/codemie-katas/refs/heads/main/katas/discover-codemie-with-faq-assistant/images/faq-location.png)
+![FAQ Assistant Location](https://codemie-ai.github.io/codemie-katas/katas/discover-codemie-with-faq-assistant/images/faq-location.png)
 
 **✅ Success Criteria:**
 - [ ] Located the FAQ Assistant in the left sidebar

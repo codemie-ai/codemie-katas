@@ -17,7 +17,7 @@ The menu on the left sidebar is your command center—placing all essential tool
 3. **Click "Expand Menu"** to see all available tools with their names
 
  **Explore the structured layout:** Chats, Assistants, Workflows, Integrations, Data Sources, pre-built Assistants, Help Center, Profile
-![Left sidebar](https://raw.githubusercontent.com/codemie-ai/codemie-katas/refs/heads/main/katas/getting-started-with-codemie/images/left_sidebar.png)
+![Left sidebar](https://codemie-ai.github.io/codemie-katas/katas/getting-started-with-codemie/images/left_sidebar.png)
 
    **Now let's discover what each section contains!**
 
@@ -111,7 +111,7 @@ When you expand the **Folders list**, you'll see folders named after the assista
 CodeMie provides specialized assistants right in your sidebar to help you work more efficiently!
 
 1. **Navigate to the bottom** of the left sidebar
-![Help Assistants](https://raw.githubusercontent.com/codemie-ai/codemie-katas/refs/heads/main/katas/getting-started-with-codemie/images/help_assistants.png)
+![Help Assistants](https://codemie-ai.github.io/codemie-katas/katas/getting-started-with-codemie/images/help_assistants.png)
 2. **Locate the three helper assistants**:
    - **FAQ**: answers questions about AI/Run CodeMie's features and provides guidance on platform usage based on context searched from the knowledge base.
    - **Prompt Engineer**: Helps you craft better prompts and instructions
@@ -196,7 +196,7 @@ Your profile is easily accessible from the sidebar, allowing you to manage your 
 1. **Locate the Profile option** in the sidebar (between "Help" and "Hide Menu")
    - You'll see it with your profile picture
 
-![profile](https://raw.githubusercontent.com/codemie-ai/codemie-katas/refs/heads/main/katas/getting-started-with-codemie/images/profile.png)
+![profile](https://codemie-ai.github.io/codemie-katas/katas/getting-started-with-codemie/images/profile.png)
 
 2. **Click on Profile** to open the Settings page
 
@@ -243,7 +243,7 @@ The Chats menu in the left sidebar includes intelligent chat organization that k
 #### Part 1: Organize Chats with Smart Folders
 
 1. **Navigate to the left sidebar** where all your chats are stored
-![chats](https://raw.githubusercontent.com/codemie-ai/codemie-katas/refs/heads/main/katas/getting-started-with-codemie/images/chats.png)
+![chats](https://codemie-ai.github.io/codemie-katas/katas/getting-started-with-codemie/images/chats.png)
 2. **Create a chat** with a previously discovered Pre-built assistants by clicking on one of them
 3. **Observe the automatic folder creation**:
    - When you expand the **FOLDERS** list, you'll see folders named after the assistants used in chats
@@ -269,7 +269,7 @@ The Chats menu in the left sidebar includes intelligent chat organization that k
 9. **Click the Configuration button**:
    - A sidebar opens on the right with all the settings you need
    - Notice how you can adjust settings without losing your chat context
-![configuration](https://raw.githubusercontent.com/codemie-ai/codemie-katas/refs/heads/main/katas/getting-started-with-codemie/images/сonfiguration.png)
+![configuration](https://codemie-ai.github.io/codemie-katas/katas/getting-started-with-codemie/images/сonfiguration.png)
 
 10. **Explore the General Section**:
     - Select the LLM model that best fits your needs
