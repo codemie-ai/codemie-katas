@@ -41,7 +41,7 @@ roles:
 
 # Image URL for UI card display (optional)
 # Recommended size: 400x300px
-image_url: "https://raw.githubusercontent.com/epam-gen-ai-run/ai-run-install/refs/heads/main/docs/assets/ai/ai-run-codemie-logo-dark_bg.svg"
+image_url: "https://epam-gen-ai-run.github.io/ai-run-install/docs/assets/ai/ai-run-codemie-logo-dark_bg.svg"
 
 # Links to external resources (optional)
 links:

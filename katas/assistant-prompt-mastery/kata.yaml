@@ -16,7 +16,7 @@ roles:
   - "developer"
   - "ai-engineer"
   - "product-manager"
-image_url: "https://raw.githubusercontent.com/epam-gen-ai-run/ai-run-install/main/docs/assets/ai/prompt-engineer.png"
+image_url: "https://epam-gen-ai-run.github.io/ai-run-install/docs/assets/ai/prompt-engineer.png"
 status: "published"
 author:
   name: "CodeMie Team"

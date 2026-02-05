@@ -18,7 +18,7 @@ roles:
   - "developer"
   - "ai-engineer"
 status: "published"
-image_url: "https://raw.githubusercontent.com/epam-gen-ai-run/ai-run-install/refs/heads/main/docs/assets/ai/ai-run-codemie-logo-dark_bg.svg"
+image_url: "https://epam-gen-ai-run.github.io/ai-run-install/docs/assets/ai/ai-run-codemie-logo-dark_bg.svg"
 links: []
 author:
   name: "CodeMie Team"
