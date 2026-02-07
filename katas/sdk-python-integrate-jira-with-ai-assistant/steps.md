@@ -26,7 +26,7 @@ username=firstname_lastname@epam.com
 password=your_password
 auth_client_id=your_client_id
 auth_realm_name=codemie-prod
-auth_server_url=https://keycloak.eks-core.aws.main.edp.projects.epam.com/auth
+auth_server_url=https://auth.codemie.lab.epam.com
 verify_ssl=false
 ```
 

@@ -34,7 +34,7 @@ from time import sleep
 
 # Initialize your CodeMie client
 client = CodeMieClient(
-    auth_server_url="https://keycloak.eks-core.aws.main.edp.projects.epam.com/auth",
+    auth_server_url="https://auth.codemie.lab.epam.com",
     auth_client_id="your-client-id",
     auth_client_secret="your-client-secret",
     auth_realm_name="your-realm",
