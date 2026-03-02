@@ -1,0 +1,25 @@
+id: "master-ai-skills"
+version: "1.0.0"
+title: "Master AI Skills: Build Modular, Reusable AI Knowledge"
+description: >
+  Discover the power of Skills - the feature that transforms how you build AI assistants!
+  Learn to create reusable instruction sets that load on-demand, share knowledge across teams,
+  and eliminate bloated system prompts. Master three creation methods, understand when to use
+  each approach, and explore dynamic skill attachment. Perfect for anyone building smart,
+  efficient AI assistants with modular capabilities.
+level: "beginner"
+duration_minutes: 15
+tags:
+  - "getting-started"
+  - "ai-agents"
+  - "codemie"
+roles:
+  - "developer"
+  - "ai-engineer"
+  - "business-analyst"
+status: "draft"
+image_url: "https://epam-gen-ai-run.github.io/ai-run-install/docs/assets/ai/ai-run-codemie-logo-dark_bg.svg"
+links: []
+author:
+  name: "CodeMie Team"
+  github: "codemie-ai"
