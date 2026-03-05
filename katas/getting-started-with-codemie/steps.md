@@ -160,7 +160,7 @@ The Help Center is your go-to place for assistance, learning, and updates—ever
    - Find the "Learning Resources" section
    - Review the three learning options:
      - **EPAM Video Portal**: Short tutorials, walkthroughs, and product use cases (click "Explore")
-     - **User Guide**: Step-by-step documentation for all key features (click "Open Guide")
+     - **Documentation**: A source for getting started, platform and deployment guides, help and contribution. (click "View Docs")
      - **YouTube Channel**: Tutorials and product guides (click "Explore")
    - Open at least one learning resource to see what's available
 
@@ -168,18 +168,18 @@ The Help Center is your go-to place for assistance, learning, and updates—ever
    - Find the **Release Notes** option
    - Click **"See What's New"** to view the latest changes, fixes, and enhancements
 
-**💡 Help Center Tip:** Explore the User Guide to deepen your platform knowledge and check Release Notes regularly to discover new features and improvements!
+**💡 Help Center Tip:** Explore the Documentation to deepen your platform knowledge and check Release Notes regularly to discover new features and improvements!
 
 **✅ Success Criteria:**
 - [ ] Opened the Help Center from the sidebar
 - [ ] Located the AI Assistants section and tried "Chat Now" on one assistant
-- [ ] Opened at least one learning resource (Video Portal, User Guide, or YouTube)
+- [ ] Opened at least one learning resource (Video Portal, Documentation, or YouTube)
 - [ ] Clicked "See What's New" to view Release Notes
 - [ ] Understand how to access help resources anytime
 
 **🏆 Bonus Challenge:**
 - Watch one tutorial video from the EPAM Video Portal or YouTube Channel
-- Read through the complete User Guide for one feature you use frequently
+- Read through the complete Documentation for one feature you use frequently
 - Review the latest Release Notes to discover new features you haven't tried yet
 - **Subscribe to the CodeMie YouTube Channel** and enable notifications for new content
 
