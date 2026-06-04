@@ -1,5 +1,7 @@
 
-# Build SDLC Assistants in CodeMie (Business Analysis → Test)
+# End-to-End AI SDLC Demo
+
+Build a complete AI-native end to end SDLC using CodeMie Assistants that collaborate across different project phases. In this kata, you will create and configure multiple AI assistants that simulate a real end-to-end delivery pipeline where information flows seamlessly between Business Analysis, Architecture, Quality Assurance, Development, and Code Review stages.
 
 ## Overview / Goal
 
@@ -7,9 +9,9 @@
 
 Here is the video link to understand more about the flow.
 
-[https://videoportal.epam.com/video/e7n3lDna](https://videoportal.epam.com/video/e7n3lDna)
+(https://videoportal.epam.com/video/e7n3lDna)
 
-The diagram above illustrates how CodeMie Agents (such as **CLARA** for Business Analysis, **ARCHIE** for Solution Architecture, and **TESSA** for QA) collaborate in a real end-to-end AI-native delivery flow. Each agent:    
+The diagram above illustrates how CodeMie Agents (such as **CLARA** for Business Analysis, **ARCHIE** for Solution Architecture,  **TESSA** for QA,and **CR** for codereview) collaborate in a real end-to-end AI-native delivery flow. Each agent:    
 
 * Reads inputs from real systems (call transcripts, Jira, Git).
 * Uses human feedback checkpoints at key decisions.
@@ -25,11 +27,12 @@ Create four separate CodeMie Assistants aligned to key SDLC phases:
 * CR (Code Review)
 
 The agent or assistant we are going to create will look similar to the image shown below.
+
 ![CodeMie workspace selection](https://codemie-ai.github.io/codemie-katas/katas/sdlc-kata/images/assistant.png)
 
 You will:
 
-* Create one Assistant per SDLC phase with a clear name, purpose, and system prompt.
+* Create four Assistants for end to end phase with a clear name, purpose, and system prompt.
 
 ---
 
@@ -37,7 +40,7 @@ You will:
 
 1. **Log in to CodeMie**
 
-   * Open your browser and navigate to [https://codemie.lab.epam.com](https://codemie.lab.epam.com)
+   * Open your browser and navigate to (https://codemie.lab.epam.com)
    * Sign in with your EPAM credentials (use SIGN IN WITH EPAM SSO option)
    * After login, verify you see the main CodeMie dashboard
 
@@ -48,8 +51,6 @@ You will:
 ## Tools / Access needed
 
 * CodeMie: ability to create and edit Assistants (Assistants only; no workflows required in this kata).
-
----
 
 ## Going to follow this flow
 
@@ -62,9 +63,8 @@ Decide on a naming convention for consistency. Recommended:
 
 ---
 
-
-
 ### Integrations Setup Guide
+
 1. Here we are integrating Jira so the assistant can directly access project tickets. This enables it to view, update, and work on issues seamlessly throughout the workflow.
 
 ![CodeMie workspace selection](https://codemie-ai.github.io/codemie-katas/katas/sdlc-kata/images/codemie_integration.png)
@@ -74,35 +74,54 @@ Decide on a naming convention for consistency. Recommended:
 - Select type: Jira
 - Fill in required details:
 - Link :-https://jiraeu.epam.com
-- Token 
+- Token
 
-```To create a token for Jira:
+```
+To create a token for Jira:
 
-1. Go to the Jira site: [https://jirau.epam.com]
+1. Go to the Jira site: (https://jirau.epam.com)
 2. Navigate to your profile.
 3. Open API Authentication.
 4. Click on Create New Token.
 5. Select read & write Generate and copy the token for further use.
 ```
+
 ![CodeMie workspace selection](https://codemie-ai.github.io/codemie-katas/katas/sdlc-kata/images/jira_token.png)
+
 - Click Test (top-right) to validate
 - Click Save
 
+---
 
 2. Here we are integrating the Git repository so the assistant can directly access the codebase. This enables it to create new branches, manage commits, and perform all necessary Git operations seamlessly.
 
--> Git Integration ("Demo Purpose")
+**Git Integration ("Demo Purpose")**
 - Go to Integrations
 - Click on Create
 - Select type: Git
 - Fill in required details:
-- Link (repo link)/
+- Link (repo link)
 - Token name & Token
 
+```
+### Generate Personal Access Token in GitBud (https://gitbud.epam.com/)
+
+1. Open [GitBud EPAM](https://gitbud.epam.com/) and sign in to your account.
+2. Click on your profile icon (top-left corner).
+3. Select **Preferences**.
+4. In the left sidebar, click **Access Tokens**.
+5. Under **Personal Access Tokens**, click **Add new token** / **Create token**.
+6. Enter a token name: `kt`
+7. Set an **Expiration date** as required.
+8. Under permissions/scopes, select **all permissions**.
+9. Click **Create personal access token**.
+10. Copy and store the token securely (it will be shown only once).
+```
+
+or you can use github
 
 ```
-To create a Git access token  [https://github.com/]
-
+To create a Git access token  (https://github.com/)
 
 ### Generate Personal Access Token in GitHub
 
@@ -117,60 +136,47 @@ To create a Git access token  [https://github.com/]
    repo →  Full control of private repositories (covers all Git operations like clone, pull, push, branch, PRs)
 9. Click Generate token.
 10. Copy and store the token securely (it will be shown only once).
-
-
 ```
+
+
 ![CodeMie workspace selection](https://codemie-ai.github.io/codemie-katas/katas/sdlc-kata/images/githubtoken.png)
 
 - Click Test (top-right) to validate
 - Click Save
 
+---
 
-
-## (1)Data source setup
+## 1. Data source setup
 
 From here you can go on data source :-
 
-**Note:** Login to GitHub must be done using a **personal email ID (not EPAM email)**.
-
 Need to create 3 data source.
 
-1. Codemie user guide
+**1. Codemie user guide**
+
 ![CodeMie workspace selection](https://codemie-ai.github.io/codemie-katas/katas/sdlc-kata/images/data_source.png)
 
-Here is the updated version with the correct repository link:
-
----
-
-### **Step 1: Open Data Source**
+**Step 1: Open Data Source**
 
 * Click on the **Data Source icon**
-* Click **“Create Data Source”** (top-right corner)
+* Click **”Create Data Source”** (top-right corner)
 
----
-
-### **Step 2: Fill Basic Details**
+**Step 2: Fill Basic Details**
 
 * **Name:** `user_guide`
 * **Description:** `codemie user_guide`
 
----
-
-### **Step 3: Select Data Source Type**
+**Step 3: Select Data Source Type**
 
 * Choose **Datasource Type:** `Git`
 
----
-
-### **Step 4: Add Repository Details**
+**Step 4: Add Repository Details**
 
 * **Repository Link:**
   `https://github.com/codemie-ai/docs/tree/main/docs/user-guide`
 * **Branch:** `main`
 
----
-
-### **Step 5: Create Git Integration**
+**Step 5: Create Git Integration**
 
 * Click **Add User Integration**
 
@@ -179,52 +185,40 @@ Fill the following:
 * **Alias:** `guide`
 * **URL:** `https://github.com`
 
----
-
-
-### **Step 6: Add Token in Integration**
+**Step 6: Add Token in Integration**
 
 * Paste the **Token**
 * Use the **same token** created above
 * Ensure **token name = integration name (guide)**
 * Save the integration
 
----
-
-### **Step 7: Select Integration**
+**Step 7: Select Integration**
 
 * Select the same integration you just created (`guide`)
 
----
-
-### **Step 8: Save Data Source**
+**Step 8: Save Data Source**
 
 * Click **Save Data Source**
 
-
 ---
 
-## (2)Codemie UI Data Source Setup
+## 2. Codemie UI Data Source Setup
 
-### **Step 1: Open Data Source**
+**Step 1: Open Data Source**
 
 * Go to **Data Source**
 * Click on **Create New Data Source**
 
----
-
-### **Step 2: Fill Basic Details**
+**Step 2: Fill Basic Details**
 
 * **Name:** `codemie_ui`
 * **Description:** `codemie ui`
 * **Type:** `Git`
 
----
+**Step 3: Fork the Repository**
 
-### **Step 3: Fork the Repository**
-
-1. Open the link using your **personal email ID (not EPAM)**:
-   [https://github.com/codemie-ai/codemie-ui](https://github.com/codemie-ai/codemie-ui)
+1. Open the link using your **epam id**:
+   (https://git.epam.com/epm-inai/codemie-ai/codemie-ui/codemie-ui)
 
 2. Click on **Fork**
 
@@ -237,52 +231,38 @@ Fill the following:
 
 6. Copy the **Repository URL**
 
----
-
-### **Step 4: Add Repository Link**
+**Step 4: Add Repository Link**
 
 * Paste the copied URL into **Repo Link**
 
----
-
-### **Step 5: Configure Git Integration**
+**Step 5: Configure Git Integration**
 
 * Select **User Git Integration**
 * Use the **same token** that you created earlier for **Codemie User Guide Data Source**
 
----
-
-### **Step 6: Save Data Source**
+**Step 6: Save Data Source**
 
 * Click **Save**
 
 ---
 
-Here is the **formatted version for Codemie Backend Data Source**:
+## 3. Codemie Backend Data Source Setup
 
----
-
-### 3 Codemie Backend Data Source Setup
-
-### **Step 1: Open Data Source**
+**Step 1: Open Data Source**
 
 * Go to **Data Source**
 * Click on **Create New Data Source**
 
----
-
-### **Step 2: Fill Basic Details**
+**Step 2: Fill Basic Details**
 
 * **Name:** `codemie-backend`
 * **Description:** `codemie backend`
 * **Type:** `Git`
 
----
+**Step 3: Fork the Repository**
 
-### **Step 3: Fork the Repository**
-
-1. Open the link using your **personal email ID (not EPAM)**:
-   [https://github.com/codemie-ai/codemie]
+1. Open the link using your **epam id**:
+   (https://git.epam.com/epm-inai/codemie-ai/codemie-backend/codemie)
 
 2. Click on **Fork**
 
@@ -295,31 +275,25 @@ Here is the **formatted version for Codemie Backend Data Source**:
 
 6. Copy the **Repository URL**
 
----
-
-### **Step 4: Add Repository Link**
+**Step 4: Add Repository Link**
 
 * Paste the copied URL into **Repo Link**
 
----
-
-### **Step 5: Configure Git Integration**
+**Step 5: Configure Git Integration**
 
 * Select **User Git Integration**
 * Use the **same token** that you created earlier for **Codemie User Guide Data Source**
 
----
-
-### **Step 6: Save Data Source**
+**Step 6: Save Data Source**
 
 * Click **Save**
 
+
+**NOTE**: "Don't merge any PR/MR in this repo. Post demo, please cleanup all the PR/MR raised for the demo"
+
 ---
 
-
-## Kata steps
-
-## 1) Create the Clara Assistant
+## 🎯 Create the CLARA Assistant
 
 **Purpose:**
 - Elicit and structure requirements and acceptance criteria.
@@ -333,10 +307,10 @@ Here is the **formatted version for Codemie Backend Data Source**:
 
 2. **Name**: **CLARA**.
 
-3. **Description**:"Role: Extracts and creates user requirements as a Business Analyst (BA).
-Tools/Connections: Connected to Jira for managing requirement tickets."
+3. **Description**: "Role: Extracts and creates user requirements as a Business Analyst (BA).
+   Tools/Connections: Connected to Jira for managing requirement tickets."
 
-4. **Category**:-Business Analysis, Migration & Modernization
+4. **Category**: Business Analysis, Migration & Modernization
 
 5. System Prompt (paste the following):
 ```
@@ -438,7 +412,7 @@ Decompose into 3–5 high-level technical sub-tasks, tagged by repository:
 - If epic key provided, link via `customfield_14500`.
 - Do not use any other custom fields.
 
----
+
 ## Important Constraints
 - Always use project **EPMCDMETST**
 - **Never explicitly set the Reporter** — Jira must fall back to the default/system reporter
@@ -452,19 +426,16 @@ Decompose into 3–5 high-level technical sub-tasks, tagged by repository:
 ```
 6. **LLM Model**: Select a model Bedrock Claude 4.5 Sonnet
 
-
 ![CodeMie workspace selection](https://codemie-ai.github.io/codemie-katas/katas/sdlc-kata/images/LLM.png)
 
 7. **Tools & Integrations**: 
-   - **Project Management**: **Genric Jira** -> user integration named as "jira"(created earlier during integration setup).
+   - **Project Management**: **Genric Jira** -> user integration named as "jira" (created earlier during integration setup).
 
 ![CodeMie workspace selection](https://codemie-ai.github.io/codemie-katas/katas/sdlc-kata/images/jira.png)
 
-- **Data Source**:- add data source named user_guide(created earlier).
-
+   - **Data Source**: add data source named user_guide (created earlier).
 
 ![CodeMie workspace selection](https://codemie-ai.github.io/codemie-katas/katas/sdlc-kata/images/user_guide.png)
-
 
 8. **Save the Assistant.**
 
@@ -472,7 +443,7 @@ Decompose into 3–5 high-level technical sub-tasks, tagged by repository:
 
 ---
 
-## 2) Create the Tessa Assistant
+## 🎯 Create the TESSA Assistant
 
 **Purpose:**
  QA (Tessa) ensures that the developed feature matches the requirements and works correctly across all scenarios.
@@ -480,13 +451,14 @@ It generates structured test cases from user stories to validate functionality a
 
 1. Assistants → New Assistant.
 
-2. Name: **Tessa**.
+2. **Name**: **Tessa**.
 
-3. **Description**:"Role: Generates and logs test cases for user stories.
-Tools/Connections: Connected to Jira and a file containing test cases."
-- **Category**:- Quality Assurance
+3. **Description**: "Role: Generates and logs test cases for user stories.
+   Tools/Connections: Connected to Jira and a file containing test cases."
 
-4. System Prompt (paste the following):
+4. **Category**: Quality Assurance
+
+5. System Prompt (paste the following):
 ```
 # AI Agent Prompt: Test Case Creation and Logging
 
@@ -526,40 +498,37 @@ Follow these steps:
 - Format content according to Jira best practices, maintaining clarity and structure.  
 - Do not modify the reporter or labels unless explicitly instructed by the user.
 ```
+
 6. **LLM Model**: Bedrock Claude 4.5 Sonnet.
 
 7. **Tools & Integrations**:    
-   - **Project Management**: **Genric jira** -> user integration named "jira"(created earlier).
+   - **Project Management**: **Genric jira** -> user integration named "jira" (created earlier).
 
-   ![CodeMie workspace selection](https://codemie-ai.github.io/codemie-katas/katas/sdlc-kata/images/jira.png)
+![CodeMie workspace selection](https://codemie-ai.github.io/codemie-katas/katas/sdlc-kata/images/jira.png)
 
-   
 8. **Save the Assistant.**
+
 ---
-## 3) Create the Archie Assistant
+## 🎯 Create the ARCHIE Assistant
 
 **Purpose:**
 - Translate the BA brief into a solution concept and high-level design.
+
 ![CodeMie workspace selection](https://codemie-ai.github.io/codemie-katas/katas/sdlc-kata/images/manual.png)
 
 1. Assistants → New Assistant.
 
 2. **Name**: **ARCHIE**.
 
-3. **Description**:"Role: Provides implementation details from the codebase.
-Tools/Connections: Access to the CodeMie backend and frontend codebase and Jira"
+3. **Description**: "Role: Provides implementation details from the codebase.
+   Tools/Connections: Access to the CodeMie backend and frontend codebase and Jira"
 
 4. **Category**: Architect, Migration & Modernization
 
 
-Here is the **clean and formal version**:
-
----
-
 **Note:**
 While pasting the prompt for Archie, ensure that you update the frontend and backend repository URLs with your own forked repository links. These should correspond to the repositories you previously created and named **codemie-ui** and **codemie-backend**.
 
----
 
 5. System Prompt (paste the following):
 
@@ -568,7 +537,6 @@ You are a Solution Architect agent designed to process Jira tasks from the EPMCD
 
 **Reporter/Author**: Always use {{current_user}} for Jira updates and Git commits.
 
----
 
 ## Workflow
 
@@ -585,7 +553,6 @@ You are a Solution Architect agent designed to process Jira tasks from the EPMCD
 - Sanitize the summary to create `<name_of_the_spec>` (e.g., "Configure FTP/SFTP Data Source" → `ftp-sftp-data-source`)
 - Create `<branch_name>` as: `feature/<ticket_number>-<name_of_the_spec>` (e.g., `feature/EPMCDMETST-18523-ftp-sftp-data-source`)
 
----
 
 ### 2. Research Codebase and Documentation (MANDATORY FIRST STEP)
 
@@ -629,8 +596,6 @@ You are a Solution Architect agent designed to process Jira tasks from the EPMCD
 
 **Only after completing research** should you proceed to clarification questions.
 
----
-
 ### 3. Clarify Requirements (Iterative Process)
 
 - **Only ask clarification questions for gaps that remain AFTER codebase and documentation research**
@@ -663,7 +628,6 @@ You are a Solution Architect agent designed to process Jira tasks from the EPMCD
 - **Do NOT proceed to plan generation** until all critical clarifications are resolved.
 - **Do NOT ask questions** about information that can be inferred from existing codebase patterns or documentation.
 
----
 
 ### 4. Generate plan.md for All Affected Repositories
 
@@ -779,9 +743,6 @@ markdown
 - [Demo requirements and timelines]
 - [Special technical considerations]
 
-
----
-
 ### 5. Create Branch(es), Commit plan.md, and Create PR(s) Automatically
 
 **After all clarifications are resolved and plan(s) are generated:**
@@ -826,6 +787,7 @@ For **each affected repository**:
      3. Integration testing across repositories (if applicable)
      
      **Labels**: AI/Run, AI-Generated
+     ```
      
 5. **Update Jira**: Add comment to the original task with PR link(s), using {{current_user}} as commenter
 
@@ -846,9 +808,6 @@ For **each affected repository**:
 
 Plans are ready for review!
 
-
----
-
 ## Important Constraints
 
 - **Jira Project**: Always use EPMCDMETST
@@ -867,8 +826,6 @@ Plans are ready for review!
 - **Research First**: ALWAYS research codebases and User Guide BEFORE asking clarification questions
 - **Iterative Clarifications**: Ask up to 3 CRITICAL questions at a time, iterate until all resolved
 
----
-
 ## Repository Selection Logic
 
 - **Front-end only**: If task only mentions UI, forms, components, styling, user experience
@@ -879,8 +836,6 @@ Plans are ready for review!
   - Cross-layer functionality (e.g., "add data source with UI and backend")
   
 When in doubt, ask the user which repository/repositories to target.
-
----
 
 ## Research Best Practices
 
@@ -893,8 +848,6 @@ When in doubt, ask the user which repository/repositories to target.
 7. **Document what you find** in the "Research Findings" section of plan.md
 8. **Only ask questions** about gaps that truly can't be filled by research
 
----
-
 ## Clarification Process Guidelines
 
 1. **Prioritize by criticality**: Ask about blockers that prevent plan generation first
@@ -903,8 +856,8 @@ When in doubt, ask the user which repository/repositories to target.
 4. **Iterate efficiently**: After each batch, determine if more questions are needed
 5. **Know when to stop**: Once you have enough to create a comprehensive plan, proceed
 6. **Document assumptions**: If non-critical details are unclear, document as assumptions in plan.md
-
 ```
+
 5. **LLM Model**: Select Bedrock Claude 4.5 Sonnet.
 
 ![CodeMie workspace selection](https://codemie-ai.github.io/codemie-katas/katas/sdlc-kata/images/LLM.png)
@@ -913,16 +866,14 @@ When in doubt, ask the user which repository/repositories to target.
 
 ![CodeMie workspace selection](https://codemie-ai.github.io/codemie-katas/katas/sdlc-kata/images/git_hub_integration.png)
   
-- **Project Management**: **Genric Jira** -> use the integration named  "jira"(created earlier).
+   - **Project Management**: **Genric Jira** -> use the integration named "jira" (created earlier).
 
-- **Context & Data source**:-The following data sources must be added:
+   - **Context & Data source**: The following data sources must be added:
+     * Codemie User Guide
+     * Codemie UI (codemie-ui)
+     * Codemie Backend (codemie-backend)
 
-* Codemie User Guide
-* Codemie UI (codemie-ui)
-* Codemie Backend (codemie-backend)
-
- ![CodeMie workspace selection](https://codemie-ai.github.io/codemie-katas/katas/sdlc-kata/images/all_data_sources.png)
-
+![CodeMie workspace selection](https://codemie-ai.github.io/codemie-katas/katas/sdlc-kata/images/all_data_sources.png)
 
 7. **Save the Assistant.**
 
@@ -935,6 +886,7 @@ For development, you can use any coding assistant or tool such as:
 * GitHub Copilot
 * Claude
 * Any other preferred development tool
+
 **Steps**:
 1. Take the plan.md generated by ARCHIE
 2. Provide it to your coding assistant (e.g., Copilot)
@@ -943,9 +895,10 @@ For development, you can use any coding assistant or tool such as:
 
 
 ---
- ### 4) Create the CR
 
- **Purpose**:
+## 🎯 Create the CR Assistant
+
+**Purpose**:
 An AI code review assistant that analyzes Pull Requests, evaluates code quality, security, maintainability, and best practices , and posts a single consolidated review comment in GitLab.
 
 
@@ -953,13 +906,14 @@ An AI code review assistant that analyzes Pull Requests, evaluates code quality,
 
 2. **Name**: **CR**.
 
-3. **Description**:"Prebuilt Code/Document Reviewer. Main role is to review changes in Pull Requests and create comments on its findings."
+3. **Description**: "Prebuilt Code/Document Reviewer. Main role is to review changes in Pull Requests and create comments on its findings."
 
-4. **Category**:- Migration & Modernization ,Engineering
+4. **Category**: Migration & Modernization, Engineering
 
 5. System Prompt (paste the following):
 
-```You are an AI specialized in code analysis and optimization with expertise in Python 3.12, LangChain, and LangGraph.
+```
+You are an AI specialized in code analysis and optimization with expertise in Python 3.12, LangChain, and LangGraph.
 Your main goal is to conduct a review of a code in Pull Requests.
 Review all the changes in PR number provided by user and create your comments in GitLab for all the cases—even if all good or if you find any errors or things to improve.
 
@@ -1034,47 +988,13 @@ Constraints:
 
 ![CodeMie workspace selection](https://codemie-ai.github.io/codemie-katas/katas/sdlc-kata/images/git_hub_integration.png)
   
-- -**Avalaible tools**:- click on Git option then select Get Pull/Merge Request Changes, Create Pull/Merge Request Change Comment,Create Pull/Merge request.
-
+   - **Available tools**: click on Git option then select Get Pull/Merge Request Changes, Create Pull/Merge Request Change Comment, Create Pull/Merge request.
 
 8. **Save the Assistant.**
 
 ![CodeMie workspace selection](https://codemie-ai.github.io/codemie-katas/katas/sdlc-kata/images/Save.png)
 
-
-
-Here’s a **more detailed and structured version** with your required sequence (**Clara → Archie → Tessa → Dev → CR**):
-
 ---
-
-##  Reference SDLC Flow (Mermaid)
-
-This diagram represents the **AI-native SDLC flow** implemented using CodeMie assistants. Each assistant consumes the output of the previous phase and enriches it further, ensuring continuity without manual rework.
-
-![CodeMie workspace selection](https://codemie-ai.github.io/codemie-katas/katas/sdlc-kata/images/flow.png)
-
-```mermaid id="jv2k9p"
-flowchart TD
-    A[CLARA - Business Analysis] -->|Refined Requirements + User Stories (Jira)| B[ARCHIE - Solution Architecture]
-    B -->|Architecture + Plan + Technical Context| C[TESSA - QA]
-    C -->|Test Cases + Validation Scenarios| D[DEV - Development]
-    D -->|Code + Feature Branch + Merge Request| E[CR - Code Review]
-    E -->|Review Feedback / Approval| F[Final Outcome]
-
-    subgraph Iterative Flow Control
-        BAQ{Requirements Complete?} -->|No| A
-        BAQ -->|Yes| B
-
-        SAQ{Design Clear & Feasible?} -->|No| B
-        SAQ -->|Yes| C
-
-        TSQ{Test Coverage Sufficient?} -->|No| C
-        TSQ -->|Yes| D
-
-        CRQ{Changes Required?} -->|Yes| D
-        CRQ -->|No| F
-    end
-```
 
 ### Flow Explanation
 * **CLARA (BA)** → Converts raw inputs into structured user stories in Jira
@@ -1085,16 +1005,13 @@ flowchart TD
 
 ---
 
-Here is your **updated End-to-End Validation (clean, aligned with your flow, and ready for documentation/PDF)**:
-
----
-
 # End-to-End Validation Flow 
 
-For example , here using transcript.pdf file.
-transcript.pdf file contain: This transcript PDF contains a summarized discussion of a project meeting focused on integrating an FTP/SFTP data source into CodeMie. It covers technical requirements, UI design considerations, security measures, implementation timelines, resource planning, and action items for delivering the feature and demo.
+For example, here using transcript.pdf file.
 
-## 1) CLARA (Business Analysis)
+**transcript.pdf file content**: This transcript PDF contains a summarized discussion of a project meeting focused on integrating an FTP/SFTP data source into CodeMie. It covers technical requirements, UI design considerations, security measures, implementation timelines, resource planning, and action items for delivering the feature and demo.
+
+## 1. CLARA (Business Analysis)
 
 **Objective:** Convert raw inputs (chat + transcript) into structured, testable user stories.
 
@@ -1120,7 +1037,7 @@ attach transcript pdf.
 
 ---
 
-## 2) ARCHIE (Solution Architecture)
+## 2. ARCHIE (Solution Architecture)
 
 **Trigger:** After successful Jira ticket creation
 
@@ -1145,7 +1062,7 @@ attach transcript pdf.
 
 ---
 
-## 3) TESSA (QA)
+## 3. TESSA (QA)
 
 **Input Prompt:**
 
@@ -1174,7 +1091,7 @@ attach transcript pdf.
 
 ---
 
-## 4) DEVELOPMENT (External Tools)
+## 4. DEVELOPMENT (External Tools)
 
 **Objective:** Implement feature using plan generated by ARCHIE.
 
@@ -1204,7 +1121,7 @@ attach transcript pdf.
 
 ---
 
-## 5) CR (Code Review)
+## 5. CR (Code Review)
 
 **Input Prompt:**
 
@@ -1228,83 +1145,18 @@ attach transcript pdf.
 * Covers both code + documentation
 * Clear approval or change suggestions
 
----
 
 ![CodeMie workspace selection](https://codemie-ai.github.io/codemie-katas/katas/sdlc-kata/images/agent_understanding.png)
 
----
 
-# Final Integrated Flow
-
-### End-to-End Execution:
-
-**Clara → Archie → Tessa → Development → CR**
+For more clarification: (https://codemie.lab.epam.com/#/share/conversations/GdNuDFVu2W45)
 
 ---
-
-# Integration Validation
-
-### Jira
-
-* User stories created and updated
-* Test cases added
-* PR links attached
-
-### Git
-
-* Feature branches created
-* plan.md committed
-* PR raised and reviewed
-
----
-
-# Key Outcome
-
-* No manual data transfer between stages
-* Each agent uses previous output directly
-* Fully connected AI-native SDLC workflow
-
----
-
-# Troubleshooting / Common Issues
-
-### 1. Jira Issues
-
-**Problem:** Ticket not created/updated
-
-**Fix:**
-
-* Check token validity
-* Verify project key (**EPMCDMETST**)
-* Ensure required permissions are granted
-
----
-
-![CodeMie workspace selection](https://codemie-ai.github.io/codemie-katas/katas/sdlc-kata/images/agent_understanding.png)
-
----
-
-## Validation / Expected Results
-
-After completing the full flow:
-
-### Assistants Created
-
-* CLARA (BA)
-* ARCHIE (SA)
-* TESSA (QA)
-* DEV (Development)
-* CR (Code Review)
-
-### End-to-End Flow Works As:
-
-**Clara → Archie → Tessa → Dev → CR**
 
 ### Integration Validation
 
 * **Jira** → Stories, updates, linking
 * **Git** → Branches, commits, PRs
-
 
 ### Key Outcome
 
@@ -1314,5 +1166,22 @@ After completing the full flow:
 
 ---
 
+## Troubleshooting / Common Issues
 
+**1. Jira Issues**
 
+**Problem:** Ticket not created/updated
+
+**Fix:**
+
+* Check token validity
+* Verify project key (**EPMCDMETST**)
+* Ensure required permissions are granted
+---
+
+## Contact
+
+For any queries regarding this kata , feel free to ping:
+
+- Poonam Nawandar
+- Jyoti Mishra

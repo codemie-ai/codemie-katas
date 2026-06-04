@@ -1,51 +1,23 @@
 id: sdlc-kata
-
+version: 1.0.0
 title: Build SDLC Assistants in CodeMie (Business Analysis → Test)
-
 description: >
   Learn how to build and orchestrate AI-native SDLC assistants in CodeMie.
   Create CLARA, ARCHIE, TESSA, and CR assistants with Jira, GitHub,
   data sources, and end-to-end workflow integration. Build a complete
   AI-driven SDLC flow from business analysis through architecture,
   testing, development, and code review.
-
 level: intermediate
-
-duration: 90m
-
-categories:
-  - AI
-  - Software Development
-  - DevOps
-  - Architecture
-  - Quality Assurance
-
+duration_minutes: 30
 tags:
-  - SDLC
-  - CodeMie
-  - AI Assistant
-  - Jira
-  - GitHub
-  - Architecture
-  - QA
-  - Automation
-  - Code Review
-  - Agent Workflow
-
-authors:
-  - Jyoti Mishra
-
-icon: ai
-
-prerequisites:
-  - EPAM account access
-  - CodeMie access
-  - GitHub account
-  - Jira access
-
-outcomes:
-  - Create AI assistants for SDLC phases
-  - Configure Jira and Git integrations
-  - Create and connect data sources
-  - Build end-to-end SDLC workflows
-  - Validate assistant collaboration across phases
+  - ai-agents
+  - integration
+  - codemie-agents
+roles:
+  - developer
+  - business-analyst
+  - qa-engineer
+status: published
+image_url: "https://epam-gen-ai-run.github.io/ai-run-install/docs/assets/ai/ai-run-codemie-logo-dark_bg.svg"
+author:
+  name: Jyoti Mishra
